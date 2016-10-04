@@ -19,7 +19,5 @@ BOOST_PYTHON_MODULE(GlobPtr) {
   class_<GlobPtr>("GlobPtr")
     .def(init<ElementType, PatternType>())
     .def(str(self)) //__str__ in Python for << exposition
-
-
-:w
-
+    
+}
