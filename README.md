@@ -1,6 +1,6 @@
 # pydash
 
-[Logo](Logo.png)
+![Logo](Logo.png)
 
 
 ## Overview
