@@ -15,3 +15,8 @@ See this reference as a starting point
 The file `/Python-3.X.X/Modules/xxmodule.c` includes a template for C bindings and might be used as a reference for quick starters.
 
 It can be found  here: <https://www.python.org/downloads/release/python-360b1/>
+
+
+## Links
+
+<https://www.python.org/dev/peps/pep-0489/>
