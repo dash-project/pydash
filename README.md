@@ -1,7 +1,8 @@
 # pydash
 
-We will provide Python bindings for DASH
-by exposing DASH datatypes to Python.
+## Overview
+
+Python bindings for DASH by exposing DASH datatypes to Python. Soon, you will be able to do all your fancy Python things with the power of DASH. 
 
 ## Extending Python with C or C++ using Python API 
 
