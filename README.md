@@ -1,8 +1,5 @@
 # pydash
 
-![Logo](Logo.png)
-
-
 ## Overview
 
 Python bindings for DASH by exposing DASH datatypes to Python. Soon, you will be able to do all your fancy Python things with the power of DASH. 
