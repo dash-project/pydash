@@ -35,5 +35,8 @@ bool                 cdash__array__is_local(index_type global_index);
 void                 cdash__array__barrier();
 const PatternType &  cdash__array__pattern();
 HView<self_t, level> cdash__array__hview();
+bool                 cdash__array__allocate(size_type nelem, 
+                                            dash::DistributionSpec<1> distribution,
+                                            dash::Team &              team = dash::Team::All());
 
 #endif /* PYDASH__ARRAY_H__INCLUDED */
