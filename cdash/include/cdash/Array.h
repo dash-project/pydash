@@ -38,5 +38,7 @@ HView<self_t, level> cdash__array__hview();
 bool                 cdash__array__allocate(size_type nelem, 
                                             dash::DistributionSpec<1> distribution,
                                             dash::Team &              team = dash::Team::All());
+void                 cdash__array__deallocate();
+bool                 cdash__array__allocate(const PatternType & pattern);
 
 #endif /* PYDASH__ARRAY_H__INCLUDED */
