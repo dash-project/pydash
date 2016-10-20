@@ -3,16 +3,16 @@
 
 #include <libdash.h>
 
-typedef void * CArray;
-typedef int    size_type;
-typedef int    index_type;
-typedef int    bool;
-typedef int    level;
-typedef self_t;
+typedef void *      CArray;
+typedef int         size_type;
+typedef int         index_type;
+typedef int         bool;
+typedef int         level;
+typedef             self_t;
 typedef dash::HView HView;
 
 
-CArray                cdash__array__new(size_type nelem, ...);
+CArray               cdash__array__new(size_type nelem, ...);
 void                 cdash__array__delete(CArray  _this);
 View                 cdash__array__block(index_type block_gindex);
 const_pointer        cdash__array__data();
