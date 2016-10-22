@@ -69,7 +69,7 @@ bool                 cdash__array__allocate(CArray    _this,
 
 void                 cdash__array__deallocate(CArray _this);
 
-bool                 cdash__array__allocate(CArray _this,
+bool                 cdash__array__allocate(CArray              _this,
                                             const PatternType & pattern);
 
 #endif /* PYDASH__ARRAY_H__INCLUDED */
