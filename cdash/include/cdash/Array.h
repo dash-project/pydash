@@ -3,16 +3,17 @@
 
 #include <libdash.h>
 
-typedef void *      CArray;
-typedef int         size_type;
-typedef int         index_type;
-typedef int         bool;
-typedef int         level;
-typedef             self_t;
-typedef dash::HView HView;
+typedef void *                    CArray;
+typedef int                       size_type;
+typedef int                       index_type;
+typedef int                       bool;
+typedef int                       level;
+typedef                           self_t;
+typedef dash::HView               HView;
+typedef dash::Team                Team;
+typedef dash::DistributionSpec<1> DistrSpec;
 
-
-CArray               cdash__array__new(CArray _this, 
+CArray               cdash__array__new(CArray    _this, 
                                        size_type nelem, ...);
 
 void                 cdash__array__delete(CArray _this);
@@ -61,10 +62,10 @@ const PatternType &  cdash__array__pattern(CArray _this);
 
 HView<self_t, level> cdash__array__hview(CArray _this);
 
-bool                 cdash__array__allocate(CArray _this,
+bool                 cdash__array__allocate(CArray    _this,
                                             size_type nelem, 
-                                            dash::DistributionSpec<1> distribution,
-                                            dash::Team &              team = dash::Team::All());
+                                            DistrSpec distribution,
+                                            Team &    team = dash::Team::All());
 
 void                 cdash__array__deallocate(CArray _this);
 
