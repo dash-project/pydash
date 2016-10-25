@@ -19,6 +19,8 @@
 #include <initializer_list>
 #include <type_traits>
 
+typedef int bool;
+
 /*
  * LocalArrayRef (declared inside Array.h)
  *
