@@ -24,7 +24,7 @@
  *
  */
 CLocalArrayRef cdash__array__LocalArrayRef_init(        CArray         array);
-CLocalArrayRef cdash__array__LocalArrayRef_delete(      CArray         array);
+CLocalArrayRef cdash__array__LocalArrayRef_delete(      CLocalArrayRef array);
 
 const_pointer cdash__array__LocalArrayRef_begin(        CLocalArrayRef larray);
 pointer       cdash__array__LocalArrayRef_begin(        CLocalArrayRef larray);
