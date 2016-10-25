@@ -40,7 +40,7 @@ reference     cdash__array__LocalArrayRef_random_access(size_t         n);
 bool          cdash__array__LocalArrayRef_is_local(     index_type     g_index);
 
 self_t        cdash__array__LocalArrayRef_block(        index_type block_lindex);
-PatternType & cdash__array__LocalArrayRef_pattern();
+PatternType & cdash__array__LocalArrayRef_pattern(/*param*/);
 
 
 /*
