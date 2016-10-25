@@ -13,6 +13,8 @@ typedef dash::HView               HView;
 typedef dash::Team                Team;
 typedef dash::DistributionSpec<1> DistrSpec;
 
+CLocalArrayRef       cdash__array__LocalArrayRef_new(CArray c_array);
+
 CArray               cdash__array__new(CArray    _this, 
                                        size_type nelem, ...);
 
