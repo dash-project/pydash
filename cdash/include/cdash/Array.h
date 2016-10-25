@@ -42,9 +42,12 @@ value_type    cdash__array__LocalArrayRef_random_access(CLocalArrayRef larray,
 reference     cdash__array__LocalArrayRef_random_access(CLocalArrayRef larray,
                                                         size_t         n);
 
-bool          cdash__array__LocalArrayRef_is_local(     index_type     g_index);
+bool          cdash__array__LocalArrayRef_is_local(CLocalArrayRef larray, 
+                                                   index_type     g_index);
 
-self_t        cdash__array__LocalArrayRef_block(        index_type block_lindex);
+self_t        cdash__array__LocalArrayRef_block(CLocalArrayRef larray, 
+                                                index_type block_lindex);
+
 PatternType & cdash__array__LocalArrayRef_pattern(/*param*/);
 
 
