@@ -66,15 +66,17 @@ pointer               cdash__array__AsyncArrayRef_end(CAsyncArrayRef _this);
 
 size_type             cdash__array__AsyncArrayRef_size(CAsyncArrayRef _this);
 
-const_async_reference cdash__array__AsyncArrayRef_random_access(size_t n);
-async_reference       cdash__array__AsyncArrayRef_random_access(size_t n);
+const_async_reference cdash__array__AsyncArrayRef_random_access(CAsyncArrayRef _this, 
+                                                                size_t n);
+async_reference       cdash__array__AsyncArrayRef_random_access(CAsyncArrayRef _this,
+                                                                size_t n);
 
-void                  cdash__array__AsyncArrayRef_flush();
-void                  cdash__array__AsyncArrayRef_flush_local();
-void                  cdash__array__AsyncArrayRef_flush_all();
-void                  cdash__array__AsyncArrayRef_flush_local_all();
-void                  cdash__array__AsyncArrayRef_push();
-void                  cdash__array__AsyncArrayRef_fetch();
+void                  cdash__array__AsyncArrayRef_flush(CAsyncArrayRef _this);
+void                  cdash__array__AsyncArrayRef_flush_local(CAsyncArrayRef _this);
+void                  cdash__array__AsyncArrayRef_flush_all(CAsyncArrayRef _this);
+void                  cdash__array__AsyncArrayRef_flush_local_all(CAsyncArrayRef _this);
+void                  cdash__array__AsyncArrayRef_push(CAsyncArrayRef _this);
+void                  cdash__array__AsyncArrayRef_fetch(CAsyncArrayRef _this);
 
 /*
  * ArrayRef (declared inside Array.h)
