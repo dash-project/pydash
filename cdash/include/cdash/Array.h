@@ -56,15 +56,15 @@ PatternType & cdash__array__LocalArrayRef_pattern(/*param*/);
  *
  */
 CAsyncArrayRef        cdash__array__AsyncArrayRef_init( CArray array);
-void                  cdash__array__AsyncArrayRef_delete();
+void                  cdash__array__AsyncArrayRef_delete(CAsyncArrayRef _this);
 
-const_pointer         cdash__array__AsyncArrayRef_begin(CLocalArrayRef larray);
-pointer               cdash__array__AsyncArrayRef_begin(CLocalArrayRef larray);
+const_pointer         cdash__array__AsyncArrayRef_begin(CAsyncArrayRef _this);
+pointer               cdash__array__AsyncArrayRef_begin(CAsyncArrayRef _this);
 
-const_pointer         cdash__array__AsyncArrayRef_end(  CLocalArrayRef larray);
-pointer               cdash__array__AsyncArrayRef_end(  CLocalArrayRef larray);
+const_pointer         cdash__array__AsyncArrayRef_end(CAsyncArrayRef _this);
+pointer               cdash__array__AsyncArrayRef_end(CAsyncArrayRef _this);
 
-size_type             cdash__array__AsyncArrayRef_size( CLocalArrayRef larray);
+size_type             cdash__array__AsyncArrayRef_size(CAsyncArrayRef _this);
 
 const_async_reference cdash__array__AsyncArrayRef_random_access(size_t n);
 async_reference       cdash__array__AsyncArrayRef_random_access(size_t n);
