@@ -284,18 +284,49 @@ async_type  cdash__array_async;
 
 CArray cdash__array__new(/*param list*/)
 {
-  return reinterpret_cast<CArray>Arry(/*param list*/);
+  return reinterpret_cast<CArray>Array(/*param list*/);
 }
-void   cdash__array__delete(CArray _this);
-View                 cdash__array__block(index_type block_gindex);
+void cdash__array__delete(CArray _this)
+{
+  ~Array(_this);
+}
 
-const_pointer        cdash__array__data(         CArray     _this);
-iterator             cdash__array__begin(        CArray     _this);
-const_iterator       cdash__array__begin(        CArray     _this);
-iterator             cdash__array__end(          CArray     _this);
-const_iterator       cdash__array__end(          CArray     _this);
-ElementType *        cdash__array__lbegin(       CArray     _this);
-ElementType *        cdash__array__lend(         CArray     _this);
+View cdash__array__block(CArray _this, index_type block_gindex)
+{
+  return reinterpret_cast<View>_this.block(block_gindex);
+}
+
+const_pointer        cdash__array__data(CArray _this)
+{
+  return reinterpret_cast<View>_this.data();
+}
+
+iterator             cdash__array__begin(CArray _this)
+{
+  return reinterpret_cast<iterator>_this.begin();
+}
+
+const_iterator       cdash__array__begin(CArray _this)
+{
+  return reinterpret_cast<const_iterator>_this.begin();
+}
+
+iterator             cdash__array__end(CArray _this)
+{
+  return reinterpret_cast<iterator>_this.end();
+}
+
+const_iterator       cdash__array__end(CArray _this)
+{
+  return reinterpret_cast<const_iterator>_this.end();
+}
+
+ElementType *        cdash__array__lbegin(CArray _this)
+{
+  return reinterpret_cast<ElementType>_this.lbegin();
+}
+
+ElementType *        cdash__array__lend(CArray _this);
 reference            cdash__array__random_access(size_type  global_index);
 const_reference      cdash__array__random_access(size_type  global_index);
 reference            cdash__array__at(           size_type  global_pos);
