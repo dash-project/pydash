@@ -262,22 +262,19 @@ const_reference      cdash__array__ArrayRef_random_access( size_type global_inde
 reference            cdash__array__ArrayRef_at(            CArrayRef _this, 
                                                            size_t    n)
 {
-    
+    return reinterpret_cast<reference>(_this.at(n));   
 }
                                                                
 const_reference      cdash__array__ArrayRef_at(            CArrayRef _this, 
-                                                           size_t    n)
-                                                               
-                                                           {
-    
-                                                           }
+                                                           size_t    n)                                                               
+{
+    return reinterpret_cast<const_reference>(_this.at(n));   
+}
                                                                
 PatternType &        cdash__array__ArrayRef_pattern(       CArrayRef _this)
 {
-    
-}
-    
-          
+    return reinterpret_cast<PatternType>(_this.pattern());  
+}          
           
 /*
  * A distributed array.
