@@ -1,14 +1,13 @@
 #include <cdash/Array.h>
-
 #include <dash/Array.h>
 
 /*
- * TO-DO: 
+ * TO-DO:
  * ==================================
- * Implement all methods from 
+ * Implement all methods from
  * pydash/cdash/include/cdash/Array.h
  */
- 
+
 //LocalArrayRef
 CLocalArrayRef cdash__array__LocalArrayRef_init(        CArray         array)
 {
@@ -142,13 +141,12 @@ void cdash__array__AsyncArrayRef_flush_local_all(CAsyncArrayRef _this)
 void cdash__array__AsyncArrayRef_push(CAsyncArrayRef _this)
 {
     _this.push();
-}
-    
+}    
+
 void cdash__array__AsyncArrayRef_fetch(CAsyncArrayRef _this)
 {
     _this.fetch();
-}
-    
+}    
 /*
  * ArrayRef (declared inside Array.h)
  *
@@ -284,7 +282,10 @@ typedef dash::util::Locality::Scope Scope;
 local_type  cdash__array_local;
 async_type  cdash__array_async;
 
-CArray cdash__array__new(/*param list*/);
+CArray cdash__array__new(/*param list*/)
+{
+  return reinterpret_cast<CArray>Arry(/*param list*/);
+}
 void   cdash__array__delete(CArray _this);
 View                 cdash__array__block(index_type block_gindex);
 
