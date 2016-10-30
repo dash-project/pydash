@@ -212,23 +212,25 @@ const_pointer        cdash__array__ArrayRef_data(          CArrayRef _this)
 
 iterator             cdash__array__ArrayRef_begin(         CArrayRef _this)
 {
-    return reinterpret_cast<iterator>(_this.begin);       
+    return reinterpret_cast<iterator>(_this.begin());       
 }
 
 const_iterator       cdash__array__ArrayRef_begin(         CArrayRef _this)
 {
-    
+    return reinterpret_cast<const_iterator>(_this.begin());       
 }
 
 iterator             cdash__array__ArrayRef_end(           CArrayRef _this)
 {
-    
+    return reinterpret_cast<iterator>(_this.end());       
+
 }
 
 const_iterator       cdash__array__ArrayRef_end(           CArrayRef _this)
 {
-    
+    return reinterpret_cast<const_iterator>(_this.end());       
 }
+
 
 local_type           cdash__array__ArrayRef_sub_local(     CArrayRef _this)
 {
