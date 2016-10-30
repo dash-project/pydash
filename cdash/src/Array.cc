@@ -222,8 +222,7 @@ const_iterator       cdash__array__ArrayRef_begin(         CArrayRef _this)
 
 iterator             cdash__array__ArrayRef_end(           CArrayRef _this)
 {
-    return reinterpret_cast<iterator>(_this.end());       
-
+    return reinterpret_cast<iterator>(_this.end());
 }
 
 const_iterator       cdash__array__ArrayRef_end(           CArrayRef _this)
@@ -234,27 +233,30 @@ const_iterator       cdash__array__ArrayRef_end(           CArrayRef _this)
 
 local_type           cdash__array__ArrayRef_sub_local(     CArrayRef _this)
 {
-    
+    return reinterpret_cast<local_type>(_this.sub_local());        
 }
 
 ElementType       *  cdash__array__ArrayRef_lbegin(        CArrayRef _this)
 {
-    
+    return reinterpret_cast<ElementType>(_this.lbegin());        
 }
     
 ElementType       *  cdash__array__ArrayRef_lend(          CArrayRef _this)
 {
-    
+    return reinterpret_cast<ElementType>(_this.lend());        
+
 }
 
-reference            cdash__array__ArrayRef_random_access( size_type global_index)
+reference            cdash__array__ArrayRef_random_access(CArrayRef _this, 
+                                                          size_type global_index)
 {
-    
+    return reinterpret_cast<reference>(_this[global_index]);   
 }
     
 const_reference      cdash__array__ArrayRef_random_access( size_type global_index)
 {
-    
+    return reinterpret_cast<const_reference>(_this[global_index]);   
+ 
 }
     
 reference            cdash__array__ArrayRef_at(            CArrayRef _this, 
