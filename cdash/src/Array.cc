@@ -184,35 +184,35 @@ size_type            cdash__array__ArrayRef_local_capacity(CArrayRef _this)
     return reinterpret_cast<size_type>_this.local_capacity();
 }
 
-size_type            cdash__array__ArrayRef_extent(CArrayRef _this,       
-                                  dim_t     dim)
+size_type            cdash__array__ArrayRef_extent(CArrayRef _this,
+                                                   dim_t     dim)
 {
-    
+    return reinterpret_cast<size_type>(_this.extent(dim));
 }
 
 Extents_t            cdash__array__ArrayRef_extents(       CArrayRef _this)
 {
-    
+    return reinterpret_cast<Extents_t>(_this.extents);    
 }
 
 bool                 cdash__array__ArrayRef_empty(         CArrayRef _this)
 {
-    
+    return _this.empty();
 }
 
 void                 cdash__array__ArrayRef_barrier(       CArrayRef _this)
 {
-    
+   _this.barrier();   
 }
 
 const_pointer        cdash__array__ArrayRef_data(          CArrayRef _this)
 {
-    
+    _this.data();
 }
 
 iterator             cdash__array__ArrayRef_begin(         CArrayRef _this)
 {
-    
+    return reinterpret_cast<iterator>(_this.begin);       
 }
 
 const_iterator       cdash__array__ArrayRef_begin(         CArrayRef _this)
