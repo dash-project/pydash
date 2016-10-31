@@ -382,61 +382,60 @@ size_type cdash__array__lsize(CArray _this)
     return reinterpret_cast<size_type>(_this.lsize());                                     
 }
  
-size_type cdash__array__lcapacity(CArray     _this)
+size_type cdash__array__lcapacity(CArray _this)
 {
     return reinterpret_cast<size_type>(_this.lcapacity());                                     
 }
  
-bool cdash__array__empty(CArray     _this)
+bool cdash__array__empty(CArray _this)
 {
     return _this.empty();
 }
 
-View cdash__array__local_in(CArray     _this, 
-                                                 Scope      scope)
+View cdash__array__local_in(CArray _this, 
+                            Scope  scope)
 {
     return reinterpret_cast<View>(_this.local_in(scope));
 }
                                                      
-bool cdash__array__is_local(CArray _this,index_type global_index)
+bool cdash__array__is_local(CArray     _this,
+                            index_type global_index)
 {
     return (_this.is_local(global_index));
 }
                                                      
-void cdash__array__barrier(      CArray     _this)
+void cdash__array__barrier(CArray _this)
 {
     _this.barrier();
 }
-const PatternType &  cdash__array__pattern(      CArray     _this)
+const PatternType & cdash__array__pattern(CArray _this)
 {
     return reinterpret_cast<PatternType>(_this.pattern());
 }
 
-HView<self_t, level> cdash__array__hview(CArray    _this)
+HView<self_t, level> cdash__array__hview(CArray _this)
 {
     return reinterpret_cast<HView<self_t, level>>(_this.hview()); 
 }
-bool cdash__array__allocate(     CArray    _this,
-                                                 size_type nelem, 
-                                                 DistrSpec distribution,
-                                                 Team &    team)
+bool cdash__array__allocate(CArray    _this,
+                            size_type nelem,
+                            DistrSpec distribution,
+                            Team &    team)
 {
     return _this.allocate(/*param list*/);
-                                                     
 }
                                                  
                             
-void cdash__array__deallocate(   CArray    _this)
-                                                 Team &    team)
+void cdash__array__deallocate(CArray  _this,
+                              Team &  team)
 {
     _this.deallocate(/*param list*/);                                                    
 }
 
 bool cdash__array__allocate(CArray         _this,
-                                            PatternType &  pattern)
-                                            {
-                                                return _this.allocate(/*param list*/);
-                                                     
-                                            }
+                            PatternType &  pattern)
+{
+   return _this.allocate(/*param list*/); 
+}
   
 
