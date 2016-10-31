@@ -325,30 +325,112 @@ ElementType *        cdash__array__lbegin(CArray _this)
 {
   return reinterpret_cast<ElementType>_this.lbegin();
 }
+ElementType * cdash__array__lbegin(CArray _this)
+{
+  return reinterpret_cast<ElementType>(_this.lbegin());
+}
 
-ElementType *        cdash__array__lend(CArray _this);
-reference            cdash__array__random_access(size_type  global_index);
-const_reference      cdash__array__random_access(size_type  global_index);
-reference            cdash__array__at(           size_type  global_pos);
-const_reference      cdash__array__at(           size_type  global_pos);
-size_type            cdash__array__size(         CArray     _this);
-size_type            cdash__array__capacity(     CArray     _this);
-Team &               cdash__array__team(         CArray     _this);
-size_type            cdash__array__lsize(        CArray     _this);
-size_type            cdash__array__lcapacity(    CArray     _this);
-bool                 cdash__array__empty(        CArray     _this);
-View                 cdash__array__local_in(     CArray     _this, 
-                                                 Scope      scope);
-bool                 cdash__array__is_local(     CArray     _this, 
-                                                 index_type global_index);
-void                 cdash__array__barrier(      CArray     _this);
-const PatternType &  cdash__array__pattern(      CArray     _this);
-HView<self_t, level> cdash__array__hview(        CArray    _this);
-bool                 cdash__array__allocate(     CArray    _this,
+ElementType * cdash__array__lend(CArray _this)
+{
+  return reinterpret_cast<ElementType>(_this.lend());
+}
+
+reference cdash__array__random_access(CArray    _this, 
+                                      size_type global_index)
+{
+  return reinterpret_cast<reference>(_this.[global_index]);                                     
+}
+
+const_reference cdash__array__random_access(CArray _this, size_type  global_index)
+{
+  return reinterpret_cast<const_reference>(_this.[global_index]);                                     
+}
+
+reference cdash__array__at(CArray _this, size_type global_pos)
+{
+  return reinterpret_cast<reference>(_this.at(global_pos));                                     
+}
+
+const_reference cdash__array__at(CArray _this,size_type  global_pos)
+{
+    return reinterpret_cast<const_reference>(_this.at(global_pos));                                     
+}
+
+size_type cdash__array__size(CArray _this)
+{
+    return reinterpret_cast<size_type>(_this.size());                                     
+}
+    
+size_type cdash__array__capacity(CArray _this)
+{
+    return reinterpret_cast<size_type>(_this.capacity());                                     
+}
+    
+Team & cdash__array__team(CArray _this)
+{
+    return reinterpret_cast<size_type>(_this.team());                                     
+}
+ 
+size_type cdash__array__lsize(CArray _this)
+{
+    return reinterpret_cast<size_type>(_this.lsize());                                     
+}
+ 
+size_type cdash__array__lcapacity(    CArray     _this)
+{
+    return reinterpret_cast<size_type>(_this.lcapacity());                                     
+}
+ 
+bool cdash__array__empty(        CArray     _this)
+{
+    return _this.empty();
+}
+
+View cdash__array__local_in(     CArray     _this, 
+                                                 Scope      scope)
+{
+    return reinterpret_cast<View>(_this.local_in(scope));
+}
+                                                     
+bool cdash__array__is_local(CArray _this,index_type global_index)
+{
+    return (_this.is_local(global_index));
+}
+                                                     
+void cdash__array__barrier(      CArray     _this)
+{
+    _this.barrier();
+}
+const PatternType &  cdash__array__pattern(      CArray     _this)
+{
+    return reinterpret_cast<PatternType>(_this.pattern());
+}
+
+HView<self_t, level> cdash__array__hview(CArray    _this)
+{
+    return reinterpret_cast<HView<self_t, level>>(_this.hview()); 
+}
+bool cdash__array__allocate(     CArray    _this,
                                                  size_type nelem, 
                                                  DistrSpec distribution,
-                                                 Team &    team);
-void                 cdash__array__deallocate(   CArray    _this);
+                                                 Team &    team)
+{
+    return _this.allocate(/*param list*/);
+                                                     
+}
+                                                 
+                            
+void cdash__array__deallocate(   CArray    _this)
+                                                 Team &    team)
+{
+    _this.deallocate(/*param list*/);                                                    
+}
 
-bool                 cdash__array__allocate(CArray         _this,
-                                            PatternType &  pattern);
+bool cdash__array__allocate(CArray         _this,
+                                            PatternType &  pattern)
+                                            {
+                                                return _this.allocate(/*param list*/);
+                                                     
+                                            }
+  
+
