@@ -120,7 +120,8 @@ async_type  cdash__array_async;
 
 CArray cdash__array__new(/*param list*/);
 void   cdash__array__delete(CArray _this);
-View                 cdash__array__block(index_type block_gindex);
+View                 cdash__array__block(        CArray     _this,
+                                                 index_type block_gindex);
 
 const_pointer        cdash__array__data(         CArray     _this);
 iterator             cdash__array__begin(        CArray     _this);
@@ -129,10 +130,14 @@ iterator             cdash__array__end(          CArray     _this);
 const_iterator       cdash__array__end(          CArray     _this);
 ElementType *        cdash__array__lbegin(       CArray     _this);
 ElementType *        cdash__array__lend(         CArray     _this);
-reference            cdash__array__random_access(size_type  global_index);
-const_reference      cdash__array__random_access(size_type  global_index);
-reference            cdash__array__at(           size_type  global_pos);
-const_reference      cdash__array__at(           size_type  global_pos);
+reference            cdash__array__random_access(CArray     _this,
+                                                 size_type  global_index);
+const_reference      cdash__array__random_access(CArray     _this,
+                                                 size_type  global_index);
+reference            cdash__array__at(           CArray     _this,
+                                                 size_type  global_pos);
+const_reference      cdash__array__at(           CArray     _this,
+                                                 size_type  global_pos);
 size_type            cdash__array__size(         CArray     _this);
 size_type            cdash__array__capacity(     CArray     _this);
 Team &               cdash__array__team(         CArray     _this);
