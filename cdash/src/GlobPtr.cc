@@ -44,10 +44,10 @@ CGlobPtr cdash__glob_ptr__inc(CGlobPtr _this)
 
 CGlobPtr cdash__glob_ptr__dec(CGlobPtr _this)
 {
-  return reinterpret_cast<CGlobPtr>(--this);
+  return reinterpret_cast<CGlobPtr>(--(*_this));
 }
 
 CGlobPtr cdash__glob_ptr__offset(CGlobPtr _this, int offset)
 {
-  return reinterpret_cast<CGlobPtr>(_this+=offset);
+  return reinterpret_cast<CGlobPtr>((*_this)+=offset);
 }
