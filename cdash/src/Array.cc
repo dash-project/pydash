@@ -389,7 +389,7 @@ size_type cdash__array__lcapacity(CArray _this)
  
 bool cdash__array__empty(CArray _this)
 {
-    return _this.empty();
+    return (_this.empty());
 }
 
 View cdash__array__local_in(CArray _this, 
@@ -406,7 +406,7 @@ bool cdash__array__is_local(CArray     _this,
                                                      
 void cdash__array__barrier(CArray _this)
 {
-    _this.barrier();
+    (_this.barrier());
 }
 const PatternType & cdash__array__pattern(CArray _this)
 {
@@ -422,20 +422,20 @@ bool cdash__array__allocate(CArray    _this,
                             DistrSpec distribution,
                             Team &    team)
 {
-    return _this.allocate(/*param list*/);
+    return (_this.allocate(/*param list*/));
 }
                                                  
                             
 void cdash__array__deallocate(CArray  _this,
                               Team &  team)
 {
-    _this.deallocate(/*param list*/);                                                    
+    (_this.deallocate(/*param list*/));                                                    
 }
 
 bool cdash__array__allocate(CArray         _this,
                             PatternType &  pattern)
 {
-   return _this.allocate(/*param list*/); 
+   return (_this.allocate(/*param list*/)); 
 }
   
 
