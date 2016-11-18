@@ -40,10 +40,11 @@ bool          cdash__team__is_all() const;
 bool          cdash__team__is_null() const;
 bool          cdash__team__is_leaf() const;
 bool          cdash__team__is_root() const;
-bool          cdash__team__is_member(size_t groupId) const
+bool          cdash__team__is_member(size_t groupId) const;
 dart_unit_t   cdash__team__myid() const;
 size_t        cdash__team__size() const;
 size_t        cdash__team__position() const;
+void          cdash__team__barrier();
 dart_team_t   cdash__team__dart_id() const;
 dart_unit_t   cdash__team__global_id(dart_unit_t local_id);
 
