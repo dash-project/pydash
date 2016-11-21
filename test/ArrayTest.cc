@@ -93,16 +93,16 @@ TEST_F(ArrayTest, TileSize)
   size_t blocks_per_unit = 3;
   size_t size            = nunits * tilesize * blocks_per_unit;
 
-  array_t arr(size, dash::TILE(tilesize));
+  array_t arr            = cdash__array__new(size, dash::TILE(tilesize));
 
   ASSERT_EQ_U(arr.pattern().blocksize(0),
               arr.pattern().block(0).extent(0));
 
-  auto block_0         = arr.pattern().local_block(0);
-  auto block_1         = arr.pattern().local_block(1);
+  auto block_0          = arr.pattern().local_block(0);
+  auto block_1          = arr.pattern().local_block(1);
 
-  auto block_0_gend    = block_0.offset(0) + block_0.extent(0);
-  auto block_1_gbegin  = block_1.offset(0);
+  auto block_0_gend     = block_0.offset(0) + block_0.extent(0);
+  auto block_1_gbegi n  = block_1.offset(0);
 
   auto block_glob_dist = block_1_gbegin - block_0_gend;
 
@@ -117,7 +117,7 @@ TEST_F(ArrayTest, PatternAllocate)
   typedef dash::Pattern<1, dash::ROW_MAJOR, index_t> pattern_t;
   const size_t size     = 115;
   const size_t tilesize = 10;
-  dash::Array<int, index_t, pattern_t> array;
+  CArray<int, index_t, pattern_t> array = cdash__array__new(/**/);
 
   // Fill
   std::function< void(const int &, index_t)>
@@ -148,13 +148,13 @@ TEST_F(ArrayTest, PatternAllocate)
 
   // Fill
   dash::for_each_with_index(
-    array.begin(),
-    array.end(),
+    cdash__array__begin(array),
+    cdasj__array__end(  array),
     fill);
 
   dash::for_each_with_index(
-    array.begin(),
-    array.end(),
+    cdash__array__begin(array),
+    cdasj__array__end(  array),
     verify);
 }
 
@@ -163,12 +163,12 @@ TEST_F(ArrayTest, ConstructorNelemInitializer_list)
   DASH_LOG_TRACE("AralllArray(nglobal,lvals,team) >",
 		 "TESTTESTTESTfinished delegating constructor");
   dash::Array<int> target (4, {0,1,2,3});
-  
-  if(dash::myid() == 0) {
-    ASSERT_EQ_U(target[0], 0);
-    ASSERT_EQ_U(target[1], 1);
-    ASSERT_EQ_U(target[2], 2);    
-    ASSERT_EQ_U(target[3], 3);   
-  }  
+
+  if(cdash__team__myid == 0) {
+    ASSERT_EQ_U(cdash__array__random_access(target, 0), 0);
+    ASSERT_EQ_U(cdash__array__random_access(target, 1), 1);
+    ASSERT_EQ_U(cdash__array__random_access(target, 2), 2);
+    ASSERT_EQ_U(cdash__array__random_access(target, 3), 3);
+  }
 }
 
