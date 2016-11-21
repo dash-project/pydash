@@ -88,7 +88,7 @@ TEST_F(ArrayTest, TileSize)
   typedef dash::TilePattern<1, dash::ROW_MAJOR, index_t> pattern_t;
   typedef dash::Array<value_t, index_t, pattern_t>       array_t;
 
-  size_t nunits          = dash::Team::All().size();
+  size_t nunits          = cdash__team__size();
   size_t tilesize        = 1024;
   size_t blocks_per_unit = 3;
   size_t size            = nunits * tilesize * blocks_per_unit;

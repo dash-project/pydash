@@ -115,11 +115,12 @@ PatternType &        cdash__array__ArrayRef_pattern(       CArrayRef _this);
 
 typedef dash::util::Locality::Scope Scope;
 
-local_type  cdash__array_local;
-async_type  cdash__array_async;
+local_type           cdash__array_local;
+async_type           cdash__array_async;
 
-CArray cdash__array__new(/*param list*/);
-void   cdash__array__delete(CArray _this);
+//We need to think about the constructor!
+CArray               cdash__array__new(/*param list            */);
+void                 cdash__array__delete(       CArray     _this);
 View                 cdash__array__block(        CArray     _this,
                                                  index_type block_gindex);
 
@@ -144,21 +145,21 @@ Team &               cdash__array__team(         CArray     _this);
 size_type            cdash__array__lsize(        CArray     _this);
 size_type            cdash__array__lcapacity(    CArray     _this);
 bool                 cdash__array__empty(        CArray     _this);
-View                 cdash__array__local_in(     CArray     _this, 
+View                 cdash__array__local_in(     CArray     _this,
                                                  Scope      scope);
-bool                 cdash__array__is_local(     CArray     _this, 
+bool                 cdash__array__is_local(     CArray     _this,
                                                  index_type global_index);
 void                 cdash__array__barrier(      CArray     _this);
 const PatternType &  cdash__array__pattern(      CArray     _this);
-HView<self_t, level> cdash__array__hview(        CArray    _this);
-bool                 cdash__array__allocate(     CArray    _this,
-                                                 size_type nelem, 
-                                                 DistrSpec distribution,
-                                                 Team &    team);
-void                 cdash__array__deallocate(   CArray    _this);
+HView<self_t, level> cdash__array__hview(        CArray     _this);
+bool                 cdash__array__allocate(     CArray     _this,
+                                                 size_type  nelem,
+                                                 DistrSpec  distribution,
+                                                 Team &     team);
+void                 cdash__array__deallocate(   CArray     _this);
 
-bool                 cdash__array__allocate(CArray         _this,
-                                            PatternType &  pattern);
+bool                 cdash__array__allocate(     CArray     _this,
+                                              PatternType & pattern);
 
 
 #endif /* PYDASH__ARRAY_H_INCLUDED */
