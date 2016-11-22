@@ -12,7 +12,7 @@ CGlobPtr cdash__glob_ptr__new(dart_gptr_t gptr)
 
 void cdash__glob_ptr__delete(dart_gptr_r gptr)
 {
-   // No destructor in GlobPtr.h
+  dash::globPtr::delete(gptr);
 }
 
 CGlobPtr cdash__glob_ptr__copy(CGlobPtr _this)

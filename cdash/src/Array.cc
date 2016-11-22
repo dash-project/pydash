@@ -160,7 +160,7 @@ CArrayRef cdash__array__ArrayRef_init(CArray array)
 
 void cdash__array__ArrayRef_delete(CArrayRef _this)
 {
-    ~ArrayRef(_this);
+  dash::array::ArrayRef::delete(_this);
 }
 
 
@@ -291,7 +291,7 @@ CArray cdash__array__new(/*param list*/)
 }
 void cdash__array__delete(CArray _this)
 {
-  ~Array(_this);
+  delete(_this);
 }
 
 View cdash__array__block(CArray _this, index_type block_gindex)
