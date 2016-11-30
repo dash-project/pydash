@@ -28,7 +28,9 @@ void          cdash__team__unregister_deallocator(
                 void *                        object,
                 cdash__team__dealloc_fun_t    dealloc);
 
-CTeam         cdash__team__split(CTeam _this);
+CTeam         cdash__team__split(
+                CTeam _this,
+                int   nparts);
 
 CTeam         cdash__team__locality_split(
 
@@ -49,7 +51,6 @@ size_t        cdash__team__size(CTeam _this);
 size_t        cdash__team__position(CTeam _this);
 void          cdash__team__barrier(CTeam _this);
 dart_team_t   cdash__team__dart_id(CTeam _this);
-dart_unit_t   cdash__team__global_id(dart_unit_t local_id);
 
 #ifdef __cplusplus
 } // extern "C"

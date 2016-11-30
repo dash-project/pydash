@@ -19,7 +19,9 @@
 #include <initializer_list>
 #include <type_traits>
 
-typedef int bool;
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*
  * LocalArrayRef (declared inside Array.h)
@@ -118,7 +120,7 @@ typedef dash::util::Locality::Scope Scope;
 local_type           cdash__array_local;
 async_type           cdash__array_async;
 
-//We need to think about the constructor!
+// We need to think about the constructor!
 CArray               cdash__array__new(/*param list            */);
 void                 cdash__array__delete(       CArray     _this);
 View                 cdash__array__block(        CArray     _this,
@@ -159,7 +161,10 @@ bool                 cdash__array__allocate(     CArray     _this,
 void                 cdash__array__deallocate(   CArray     _this);
 
 bool                 cdash__array__allocate(     CArray     _this,
-                                              PatternType & pattern);
+                                                 PatternType & pattern);
 
+#ifdef __cplusplus
+} // extern "C"
+#endif
 
 #endif /* PYDASH__ARRAY_H_INCLUDED */
