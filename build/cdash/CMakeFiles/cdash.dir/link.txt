@@ -1,2 +1,0 @@
-/bin/ar qc libcdash.a  CMakeFiles/cdash.dir/src/Team.cc.o CMakeFiles/cdash.dir/src/Array.cc.o CMakeFiles/cdash.dir/src/GlobPtr.cc.o
-/bin/ranlib libcdash.a
