@@ -4,3 +4,5 @@ build
 *.swo
 my.*
 *.log
+compile_commands.json
+*.orig

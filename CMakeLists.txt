@@ -42,6 +42,8 @@ option(ENABLE_TRACE_LOGGING
        "Specify whether trace messages should be logged" off)
 option(ENABLE_ASSERTIONS
        "Specify whether runtime assertions should be checked" off)
+option(PYCXX_BASE
+       "Installation path of PyCXX" "")
 
 include(${CMAKE_SOURCE_DIR}/CMakeExt/MPI.cmake)
 include(${CMAKE_SOURCE_DIR}/CMakeExt/MessageColor.cmake)
@@ -135,8 +137,8 @@ file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/shared)
 
-add_subdirectory(cdash)
-add_subdirectory(pydash)
+add_subdirectory(cxxdash)
+# add_subdirectory(pydash)
 
 ## Documentation
 if (BUILD_DOCS)

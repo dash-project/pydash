@@ -20,6 +20,10 @@ exit_message() {
   echo "Done. To install PyDASH, run    make install    in $BUILD_DIR"
 }
 
+if [[ "${PYCXX_BASE}" -eq "" ]] ; then
+  PYCXX_BASE=${HOME}/opt/pycxx
+fi
+
 # Configure with default release build settings:
 mkdir -p $BUILD_DIR
 rm -Rf $BUILD_DIR/*
@@ -31,6 +35,8 @@ rm -Rf $BUILD_DIR/*
                         \
                         -DBUILD_EXAMPLES=ON \
                         -DBUILD_TESTS=ON \
+                        \
+                        -DPYCXX_BASE=$HOME/opt/pycxx \
                         \
                         -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
                         ../ && \
