@@ -2,50 +2,57 @@
 #define PYDASH__TEAM_H__INCLUDED
 
 #include <libdash.h>
-typedef int   bool;
-
-CTeam         cdash__team__new(/**/);
-
-CTeam         cdash__team__assign(CTeam _this, CTeam rhs);
-
-void          cdash__team__delete(CTeam _this);
-
-static CTeam  cdash__team__All();
-
-static CTeam  cdash__team__Null();
-
-static CTeam  cdash__team__Get();
-
-static void   cdash__team__finalize();
-
-void          cdash__team__register_deallocator(void * object,
-                                                Deallocator::dealloc_function dealloc);
-
-void          cdash__team__unregister_deallocator(void * object,
-                                                  Deallocator::dealloc_function dealloc);
-
-void          cdash__team__free();
-
-CTeam &       cdash__team__split();
-
-CTeam &       cdash__team__locality_split(dash::util::Locality::Scope scope,
-                                          unsigned                    num_parts);
-
-CTeam         cdash__team__equal(CTeam lhs, CTeam rhs);
-
-CTeam         cdash__team__unequal(CTeam lhs, CTeam rhs);
 
 
-bool          cdash__team__is_all() const;
-bool          cdash__team__is_null() const;
-bool          cdash__team__is_leaf() const;
-bool          cdash__team__is_root() const;
-bool          cdash__team__is_member(size_t groupId) const;
-dart_unit_t   cdash__team__myid() const;
-size_t        cdash__team__size() const;
-size_t        cdash__team__position() const;
-void          cdash__team__barrier();
-dart_team_t   cdash__team__dart_id() const;
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef void * CTeam;
+typedef void (*cdash__team__dealloc_fun_t(void));
+
+
+CTeam         cdash__team__All();
+
+CTeam         cdash__team__Null();
+
+CTeam         cdash__team__Get();
+
+void          cdash__team__finalize();
+
+void          cdash__team__register_deallocator(
+                void *                        object,
+                cdash__team__dealloc_fun_t    dealloc);
+
+void          cdash__team__unregister_deallocator(
+                void *                        object,
+                cdash__team__dealloc_fun_t    dealloc);
+
+CTeam         cdash__team__split(CTeam _this);
+
+CTeam         cdash__team__locality_split(
+
+                dart_locality_scope_t         scope,
+                unsigned                      num_parts);
+
+bool          cdash__team__equal(
+                CTeam lhs,
+                CTeam rhs);
+
+bool          cdash__team__is_all(CTeam _this);
+bool          cdash__team__is_null(CTeam _this);
+bool          cdash__team__is_leaf(CTeam _this);
+bool          cdash__team__is_root(CTeam _this);
+bool          cdash__team__is_member(CTeam _this, size_t groupId);
+dart_unit_t   cdash__team__myid(CTeam _this);
+size_t        cdash__team__size(CTeam _this);
+size_t        cdash__team__position(CTeam _this);
+void          cdash__team__barrier(CTeam _this);
+dart_team_t   cdash__team__dart_id(CTeam _this);
 dart_unit_t   cdash__team__global_id(dart_unit_t local_id);
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
 
 #endif /* PYDASH__TEAM_H__INCLUDED */

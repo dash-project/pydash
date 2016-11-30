@@ -41,6 +41,13 @@ option(ENABLE_TRACE_LOGGING
 option(ENABLE_ASSERTIONS
        "Specify whether runtime assertions should be checked" off)
 
+include(${CMAKE_SOURCE_DIR}/CMakeExt/MPI.cmake)
+include(${CMAKE_SOURCE_DIR}/CMakeExt/MessageColor.cmake)
+include(${CMAKE_SOURCE_DIR}/CMakeExt/Doxygen.cmake)
+include(${CMAKE_SOURCE_DIR}/CMakeExt/InstallFiles.cmake)
+include(${CMAKE_SOURCE_DIR}/CMakeExt/FileSystem.cmake)
+
+
 ## Version number
 set(PYDASH_VERSION_MAJOR 0 CACHE STRING "PyDASH major version number.")
 set(PYDASH_VERSION_MINOR 1 CACHE STRING "PyDASH minor version number.")

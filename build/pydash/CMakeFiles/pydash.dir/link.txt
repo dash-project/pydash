@@ -1,0 +1,2 @@
+/bin/ar qc libpydash.a  CMakeFiles/pydash.dir/src/GlobPtrmodule.c.o CMakeFiles/pydash.dir/src/xxmodule.c.o
+/bin/ranlib libpydash.a

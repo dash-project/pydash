@@ -1,43 +1,22 @@
-#include "cdash/src/Team.h"
-#include "dash/Team.h"
+#include <cdash/Team.h>
+#include <dash/Team.h>
 
 
-CTeam cdash__team__new(/**/)
+CTeam cdash__team__All()
 {
-  return reinterpret_cast<CTeam>dash::Team(/* ... */);
+  return reinterpret_cast<CTeam>(&dash::Team::All());
 }
 
-CTeam cdash__team__assign(CTeam _this, CTeam rhs)
+CTeam cdash__team__Null()
 {
-  _this = rhs;
+  return reinterpret_cast<CTeam>(&dash::Team::Null());
 }
 
-void cdash__team__delete(CTeam _this)
+void cdash__team__finalize()
 {
-  delete(_this);
+  dash::Team::finalize();
 }
 
-static CTeam cdash__team__All(CTeam _this)
-{
-  return reinterpret_cast<CTeam>(_this.All());
-}
-
-
-static CTeam cdash__team__Null(CTeam _this)
-{
-  return reinterpret_cast<CTeam>(_this.Null());
-}
-
-
-static CTeam cdash__team__Get(CTeam _this)
-{
-  return reinterpret_cast<CTeam>(_this.Get());
-}
-
-static void cdash__team__finalize(CTeam _this)
-{
-  (_this.finalize());
-}
 /*
 void cdash_team__register_deallocator(CTeam       _this,
                                       void *      object,
@@ -47,14 +26,9 @@ void cdash_team__register_deallocator(CTeam       _this,
 }
 */
 
-void dash__team__free(CTeam _this)
+CTeam cdash__team__split(CTeam _this)
 {
-  (_this.free());
-}
-
-CTeam & cdash__team__split()
-{
-  (_this.split());
+  return reinterpret_cast<dash::Team *>(_this)->split();
 }
 
 /*
@@ -64,63 +38,58 @@ CTeam &       cdash__team__locality_split(dash::util::Locality::Scope scope,
 
 bool cdash__team__equal(CTeam lhs, CTeam rhs)
 {
-  (lhs == rhs);
+  return (*lhs == *rhs);
 }
 
-bool cdash__team__unequal(CTeam lhs, CTeam rhs)
+bool cdash__team__is_all(CTeam _this)
 {
-  (lhs != rhs);
+  return (_this->is_all());
 }
 
-bool cdash__team__is_all(CTeam _this) const
+bool cdash__team__is_null(CTeam _this)
 {
- return (_this.is_all());
+  return (_this->is_null());
 }
 
-bool cdash__team__is_null(CTeam _this) const
+bool dash__team__is_leaf(CTeam _this)
 {
-  return (_this.is_null());
+  return (_this->is_leaf());
 }
 
-bool          cdash__team__is_leaf(CTeam _this) const
+bool cdash__team__is_root(CTeam _this)
 {
-  return (_this.is_leaf());
-}
-
-bool cdash__team__is_root(CTeam _this) const
-{
-  return (_this.is_root());
+  return (_this->is_root());
 }
 
 bool cdash__team__is_member(CTeam  _this,
-                                     size_t groupId) const
+                            size_t groupId)
 {
-  return (_this.is_member());
+  return (_this->is_member(groupId));
 }
 
-dart_unit_t cdash__team__myid(CTeam _this) const
+dart_unit_t cdash__team__myid(CTeam _this)
 {
-  return (_this.is_leaf());
+  return (_this->myid());
 }
 
-size_t cdash__team__size(CTeam _this) const
+size_t cdash__team__size(CTeam _this)
 {
-  return reinterpret_cast<size_t>(_this.size());
+  return reinterpret_cast<size_t>(_this->size());
 }
 
-size_t cdash__team__position(CTeam _this) const
+size_t cdash__team__position(CTeam _this)
 {
-  return reinterpret_cast<size_t>(_this.position());
+  return reinterpret_cast<size_t>(_this->position());
 }
 
 void cdash__team__barrier(CTeam _this)
 {
-  (_this.barrier());
+  reinterpret_cast<size_t>(_this->barrier());
 }
 
-dart_team_t cdash__team__dart_id(CTeam _this) const
+dart_team_t cdash__team__dart_id(CTeam _this)
 {
-  return reinterpret_cast<dart_team_t>(_this.dart_id);
+  return _this->dart_id;
 }
 
 dart_unit_t cdash__team__global_id(dart_unit_t local_id)
