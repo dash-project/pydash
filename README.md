@@ -18,6 +18,22 @@ of DASH.
 
 - In PyDASH, run `build.sh`
 
+## PyCXX (Optional)
+
+- Download PyCXX:
+
+    ~~~bash
+    (~) $ http://prdownloads.sourceforge.net/cxx/pycxx-7.0.1.tar.gz
+	  (~) $ tar -xf pycxx-7.0.1.tar.gz
+    ~~~
+
+- Install PyCXX:
+
+    ~~~bash
+    (pycxx) $ python2 setup.py install --prefix=$HOME/opt/pycxx
+    (pycxx) $ python3 setup.py install --prefix=$HOME/opt/pycxx
+    ~~~
+
 ## Extending Python with C or C++ using Python API 
 
 See this reference as a starting point
