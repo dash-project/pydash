@@ -28,6 +28,8 @@ option(BUILD_DOCS
        "Whether doxygen documentation should be installed" off)
 option(BUILD_EXAMPLES
        "Specify whether to build examples" on)
+option(BUILD_TESTS
+       "Specify whether to build tests" on)
 option(ENABLE_COMPILER_WARNINGS
        "Specify whether strict compiler warnings should be enabled" on)
 option(WARNINGS_AS_ERRORS
