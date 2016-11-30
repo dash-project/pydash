@@ -34,6 +34,14 @@ of DASH.
     (pycxx) $ python3 setup.py install --prefix=$HOME/opt/pycxx
     ~~~
 
+## Running Tests
+
+- Install py.test:
+
+    ~~~bash
+    $ pip install pytest --user
+    ~~~
+
 ## Extending Python with C or C++ using Python API 
 
 See this reference as a starting point

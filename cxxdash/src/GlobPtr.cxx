@@ -49,3 +49,4 @@ extern "C" EXPORT_SYMBOL PyObject * PyInit_GlobPtrCxx()
 
   return glob_ptr_module->module().ptr();
 }
+
