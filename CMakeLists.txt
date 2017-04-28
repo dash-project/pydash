@@ -45,6 +45,8 @@ option(ENABLE_ASSERTIONS
 option(PYCXX_BASE
        "Installation path of PyCXX" "")
 
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeExt)
+
 include(${CMAKE_SOURCE_DIR}/CMakeExt/MPI.cmake)
 include(${CMAKE_SOURCE_DIR}/CMakeExt/MessageColor.cmake)
 include(${CMAKE_SOURCE_DIR}/CMakeExt/Doxygen.cmake)
@@ -137,7 +139,7 @@ file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/shared)
 
-add_subdirectory(cxxdash)
+# add_subdirectory(cxxdash)
 # add_subdirectory(pydash)
 
 ## Documentation

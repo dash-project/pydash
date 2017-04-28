@@ -18,21 +18,14 @@ of DASH.
 
 - In PyDASH, run `build.sh`
 
-## PyCXX (Optional)
+## pybind11
 
-- Download PyCXX:
+- Pull from (inofficial) fork: 
 
-    ~~~bash
-    (~) $ http://prdownloads.sourceforge.net/cxx/pycxx-7.0.1.tar.gz
-	  (~) $ tar -xf pycxx-7.0.1.tar.gz
-    ~~~
+      git clone https://github.com/fuchsto/pybind11.git -b embedded
 
-- Install PyCXX:
-
-    ~~~bash
-    (pycxx) $ python2 setup.py install --prefix=$HOME/opt/pycxx
-    (pycxx) $ python3 setup.py install --prefix=$HOME/opt/pycxx
-    ~~~
+- Build and install, installation path of pybind11 must be provided
+  when building pydash applications
 
 ## Running Tests
 

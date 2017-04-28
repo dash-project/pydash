@@ -2,6 +2,7 @@
 
 BUILD_DIR=./build
 
+
 FORCE_BUILD=false
 if [ "$1" = "-f" ]; then
   FORCE_BUILD=true
@@ -22,6 +23,10 @@ exit_message() {
 
 if [[ "${PYCXX_BASE}" -eq "" ]] ; then
   PYCXX_BASE=${HOME}/opt/pycxx
+fi
+
+if [[ "${PYBIND11_BASE}" -eq "" ]] ; then
+  PYBIND11_BASE="${HOME}/opt/pybind11"
 fi
 
 # Configure with default release build settings:
