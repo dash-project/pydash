@@ -6,3 +6,6 @@ my.*
 *.log
 compile_commands.json
 *.orig
+
+*.a
+*.so
