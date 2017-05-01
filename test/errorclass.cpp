@@ -10,10 +10,14 @@ setup_pybind11(cfg)
 namespace ec {
 class error_class{
 public:
+	error_class(int i){
+		this.i = i;
+	}
+	int i;
 		
 	void g() {
 	  /*wait 30sec*/
-	  std::cout << "Will this be printed?" << std::endl;
+	  std::cout << i << std::endl;
 	}
 	
 	std::string f(){
