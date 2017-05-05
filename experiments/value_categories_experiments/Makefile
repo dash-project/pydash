@@ -1,7 +1,7 @@
 
 CC=g++
 CFLAGS=--std=c++11 -Wall -Wextra -pedantic -O0
-LDFLAGS=-lrt
+# LDFLAGS=-lrt
 
 OBJS = main.o array_maker.o
 
