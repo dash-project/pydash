@@ -3,13 +3,7 @@
 
 #include "array_wrapper.h"
 
-ArrayWrapper<int>
-return_array_by_value(
-  int         size,
-  std::string name);
-
-int
-accept_array_by_value(
-  ArrayWrapper<int> a);
+ArrayWrapper<int> return_array_by_value(int size, std::string name);
+int               accept_array_by_value(ArrayWrapper<int> a);
 
 #endif
