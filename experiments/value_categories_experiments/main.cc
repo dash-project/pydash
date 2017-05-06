@@ -120,12 +120,23 @@ Iter fill_rand(
   return end;
 }
 
+int x;
+int& getRef () 
+{
+        return x;
+}
 
 using std::cout;
 using std::endl;
 
 int main()
 {
+
+ 
+	getRef() = 4;
+	std::cout << & getRef() << std::endl;
+	
+	
   ArrayWrapper<int> a(123, "A");
   fill_rand(10, a.begin(), a.end());
   LOG("main", std::make_tuple(a.begin(), a.begin()+7));
