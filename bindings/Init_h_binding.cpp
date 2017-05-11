@@ -9,7 +9,8 @@ PYBIND11_PLUGIN(DASH) {
 		
 		//y::class_<ec::error_class> error_class(m, "error_class");
 		
-		m.def("init",							&dash::init);
+		m.def("init",
+        (void  (*)(int*, char***)) &dash::init, "Initalize DASH runtime");
 		m.def("finalize", 				&dash::finalize);
 		m.def("is_initialized", 	&dash::is_initialized);
 		m.def("is_multithreaded", &dash::is_multithreaded);
