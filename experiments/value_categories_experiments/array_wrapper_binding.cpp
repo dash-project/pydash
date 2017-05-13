@@ -26,8 +26,8 @@ PYBIND11_PLUGIN(ArrayWrapper) {
 			return py::make_iterator(v.begin(), v.end());
 		}, py::keep_alive<0, 1>());
 		
-		m.def("return_array_by_value", &return_array_by_value, py::return_value_policy::copy);
-		m.def("accept_array_by_value", &accept_array_by_value, py::return_value_policy::copy);
+		m.def("return_array_by_value", &return_array_by_value);
+		m.def("accept_array_by_value", &accept_array_by_value);
 		
 		return m.ptr();
 		

@@ -13,9 +13,7 @@ return_array_by_value(
   }
 }
 
-int
-accept_array_by_value(
-  ArrayWrapper<int> a)
+int accept_array_by_value(ArrayWrapper<int> a)
 {
   ArrayWrapper<int> mine(std::move(a));
 

@@ -120,23 +120,17 @@ Iter fill_rand(
   return end;
 }
 
-int x;
-int& getRef () 
-{
-        return x;
-}
 
 using std::cout;
 using std::endl;
 
 int main()
 {
-
- 
-	getRef() = 4;
-	std::cout << & getRef() << std::endl;
 	
-	
+	for(int i = 0; i < 100 ; i++){
+		std::cout << "mis muz 🐭  🐹 ";
+	}
+	/*
   ArrayWrapper<int> a(123, "A");
   fill_rand(10, a.begin(), a.end());
   LOG("main", std::make_tuple(a.begin(), a.begin()+7));
@@ -166,6 +160,7 @@ int main()
       accept_array_by_value(
         return_array_by_value(234, "X")
       ));
-
+*/
+	std::cout << std::endl;
   return 0;
 }
