@@ -1,6 +1,7 @@
 #include <pybind11/pybind11.h>
 
-#include "dash/dash/include/dash/Init.h"
+
+//#include "/dash/dash/include/dash/Init.h"
 
 namespace py = pybind11;
 

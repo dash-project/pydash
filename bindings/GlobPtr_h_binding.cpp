@@ -16,27 +16,13 @@ PYBIND11_PLUGIN(DASH) {
 		
 		GlobPtr.def(py::init<self_t &&>());
 		
+		// Operatoren abbilden ?, z.B.:
+		GlobPtr.def("deref",    ((GlobRef<value_type>) (*) (GlobPtr< ? >) )   &dash::GlobPtr::*,    "Dereference operator.");
 		
+		GlobPtr.def("local",    ((value_type *) (*) )   &dash::GlobPtr::local,    "Conversion to local pointer.");		
+		GlobPtr.def("set_unit", (void (*) team_unit_it) &dash::GlobPtr::set_unit, "Set the global pointer's associated unit.");
+		GlobPtr.def("is_local", (bool (*) )             &dash::GlobPtr::is_local, "Check whether the global pointer is in the local address space the pointer's associated unit.");
 		
-		GlobPtr.def("init",							&dash::init);
-		
-				
 		return m.ptr();
 		
 }
-
-.def(py::init<float, float>())
-.def(py::self + py::self)
-.def(py::self + float())
-.def(py::self - py::self)
-.def(py::self - float())
-.def(py::self * float())
-.def(py::self / float())
-.def(py::self += py::self)
-.def(py::self -= py::self)
-.def(py::self *= float())
-.def(py::self /= float())
-.def(float() + py::self)
-.def(float() - py::self)
-.def(float() * py::self)
-.def(float() / py::self)
