@@ -1,0 +1,1 @@
+c++ -O3 -shared -fPIC -std=c++11 -I$HOME/opt/dash-0.3.0-dev/include -I$HOME/opt/pybind11embedded/include $(python-config --cflags --ldflags) -I$HOME/opt/pybind11embedded/include -L$HOME/opt/dash-0.3.0-dev/lib -ldart-base -ldash-mpi -ldart-mpi Init_h_binding.cpp -o dash.so
