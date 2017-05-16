@@ -33,3 +33,14 @@ set_target_properties(dart-mpi  PROPERTIES POSITION_INDEPENDENT_CODE TRUE)
 set_target_properties(dash-mpi  PROPERTIES POSITION_INDEPENDENT_CODE TRUE)
 
 
+# Install library
+install(TARGETS dash
+        DESTINATION lib
+        EXPORT "dash-targets")
+
+# Install exports
+install(
+  EXPORT "dash-targets"
+  DESTINATION cmake)
+
+

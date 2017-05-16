@@ -30,13 +30,13 @@ if [ "${PYBIND11_BASE}" = "" ] ; then
 fi
 
 if [ "${DASH_BASE}" = "" ] ; then
-  DASH_BASE="${HOME}/opt/dash-0.3.0"
+  DASH_BASE="${HOME}/opt/dash-0.3.0-dev"
 fi
 
 # Configure with default release build settings:
 mkdir -p $BUILD_DIR
 rm -Rf $BUILD_DIR/*
-(cd $BUILD_DIR && cmake -DCMAKE_BUILD_TYPE=Release \
+(cd $BUILD_DIR && cmake -DCMAKE_BUILD_TYPE=Debug \
                         -DINSTALL_PREFIX=./pydash-0.1.0/ \
                         \
                         -DENABLE_LOGGING=OFF \

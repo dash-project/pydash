@@ -88,11 +88,13 @@ endif()
 set(DASH_DART_IMPL "MPI")
 
 if("$ENV{DASH_BASE}" STREQUAL "")
-  set(DASH_BASE_DIR "$ENV{HOME}/opt/dash-0.3.0")
-  message(STATUS "DASH_BASE not set, using ${DASH_BASE_DIR}")
+  set(DASH_BASE "$ENV{HOME}/opt/dash-0.3.0"
+      CACHE STRING "Installation path of DASH")
+  message(STATUS "DASH_BASE not set, using ${DASH_BASE}")
 else()
-  set(DASH_BASE_DIR $ENV{DASH_BASE})
-  message(STATUS "DASH_BASE set to ${DASH_BASE_DIR}")
+  set(DASH_BASE $ENV{DASH_BASE}
+      CACHE STRING "Installation path of DASH")
+  message(STATUS "DASH_BASE set to ${DASH_BASE}")
 endif()
 
 if("$ENV{PYBIND11_BASE}" STREQUAL "")
@@ -103,14 +105,14 @@ else()
       CACHE STRING "Installation path of pybind11")
 endif()
 
-set(DASH_BASE_CMAKE_DIR "${DASH_BASE_DIR}/cmake")
+set(DASH_BASE_CMAKE_DIR "${DASH_BASE}/cmake")
 
 find_package("DASH-${DASH_DART_IMPL}"
              REQUIRED
              HINTS ${DASH_BASE_CMAKE_DIR})
 find_package(MPI)
 
-message(STATUS "Looking for DASH installation in: ${DASH_BASE_DIR}")
+message(STATUS "Looking for DASH installation in: ${DASH_BASE}")
 if(DASH-MPI_FOUND)
   message(STATUS "DASH ${DASH_DART_IMPL} found")
 endif()

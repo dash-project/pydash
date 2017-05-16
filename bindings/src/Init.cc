@@ -12,7 +12,7 @@ using namespace dash;
 PYBIND11_PLUGIN(DASH) {
     py::module m("dash", "DASH Binding");
         
-    m.def("init",
+    m.def("initialize",
           ((void (*)(int *, char*)) (&init)),
           "Initalize DASH runtime");
 
