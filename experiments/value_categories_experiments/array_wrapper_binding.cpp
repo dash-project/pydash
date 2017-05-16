@@ -19,8 +19,7 @@ PYBIND11_PLUGIN(ArrayWrapper) {
 		arrayW.def(py::init<const ArrayWrapper<int>&>());
 		
 		arrayW.def("size", &ArrayWrapper<int>::size);
-	
-			
+    
 		arrayW.def("__iter__", [](ArrayWrapper<int> &v)
 		{
 			return py::make_iterator(v.begin(), v.end());
