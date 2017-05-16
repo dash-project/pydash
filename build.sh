@@ -21,11 +21,11 @@ exit_message() {
   echo "Done. To install PyDASH, run    make install    in $BUILD_DIR"
 }
 
-if [[ "${PYCXX_BASE}" -eq "" ]] ; then
+if [ "${PYCXX_BASE}" = "" ] ; then
   PYCXX_BASE=${HOME}/opt/pycxx
 fi
 
-if [[ "${PYBIND11_BASE}" -eq "" ]] ; then
+if [ "${PYBIND11_BASE}" = "" ] ; then
   PYBIND11_BASE="${HOME}/opt/pybind11"
 fi
 
@@ -41,7 +41,7 @@ rm -Rf $BUILD_DIR/*
                         -DBUILD_EXAMPLES=ON \
                         -DBUILD_TESTS=ON \
                         \
-                        -DPYCXX_BASE=$HOME/opt/pycxx \
+                        -DPYBIND11_BASE=$PYBIND11_BASE \
                         \
                         -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
                         ../ && \

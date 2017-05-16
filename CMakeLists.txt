@@ -42,12 +42,10 @@ option(ENABLE_TRACE_LOGGING
        "Specify whether trace messages should be logged" off)
 option(ENABLE_ASSERTIONS
        "Specify whether runtime assertions should be checked" off)
-option(PYCXX_BASE
-       "Installation path of PyCXX" "")
 
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeExt)
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMakeExt)
 
-include(${CMAKE_SOURCE_DIR}/CMakeExt/MPI.cmake)
+# include(${CMAKE_SOURCE_DIR}/CMakeExt/MPI.cmake)
 include(${CMAKE_SOURCE_DIR}/CMakeExt/MessageColor.cmake)
 include(${CMAKE_SOURCE_DIR}/CMakeExt/Doxygen.cmake)
 include(${CMAKE_SOURCE_DIR}/CMakeExt/InstallFiles.cmake)
@@ -97,6 +95,14 @@ else()
   message(STATUS "DASH_BASE set to ${DASH_BASE_DIR}")
 endif()
 
+if("$ENV{PYBIND11_BASE}" STREQUAL "")
+  set(PYBIND11_BASE "$ENV{HOME}/opt/pybind11"
+      CACHE STRING "Installation path of pybind11")
+else()
+  set(PYBIND11_BASE $ENV{PYBIND11_BASE}
+      CACHE STRING "Installation path of pybind11")
+endif()
+
 set(DASH_BASE_CMAKE_DIR "${DASH_BASE_DIR}/cmake")
 
 find_package("DASH-${DASH_DART_IMPL}"
@@ -113,19 +119,19 @@ if(DART-MPI_FOUND)
   message(STATUS "DART ${DASH_DART_IMPL} found")
 endif()
 
-message(STATUS "MPI include path: ${MPI_INCLUDE_PATH}")
-message(STATUS "MPI libraries:")
-foreach (MPI_C_LIB ${MPI_C_LIBRARIES})
-  message(STATUS "    " ${MPI_C_LIB})
-endforeach()
-message(STATUS "MPI link flags:")
-foreach (MPI_LINK_FLAG ${MPI_LINK_FLAGS})
-  message(STATUS "   " ${MPI_LINK_FLAG})
-endforeach()
-
-foreach (MPI_INC_ ${MPI_INCLUDE_PATH})
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${MPI_INC_}" )
-endforeach()
+# message(STATUS "MPI include path: ${MPI_INCLUDE_PATH}")
+# message(STATUS "MPI libraries:")
+# foreach (MPI_C_LIB ${MPI_C_LIBRARIES})
+#   message(STATUS "    " ${MPI_C_LIB})
+# endforeach()
+# message(STATUS "MPI link flags:")
+# foreach (MPI_LINK_FLAG ${MPI_LINK_FLAGS})
+#   message(STATUS "   " ${MPI_LINK_FLAG})
+# endforeach()
+#
+# foreach (MPI_INC_ ${MPI_INCLUDE_PATH})
+#   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${MPI_INC_}" )
+# endforeach()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${DASH_CXX_FLAGS} ${CXX_FLAGS}" )
 
 string(TOLOWER ${DASH_DART_IMPL} DASH_DART_IMPL_LC)
@@ -139,8 +145,7 @@ file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/shared)
 
-# add_subdirectory(cxxdash)
-# add_subdirectory(pydash)
+add_subdirectory(bindings)
 
 ## Documentation
 if (BUILD_DOCS)
