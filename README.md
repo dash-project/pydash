@@ -1,7 +1,5 @@
 # pydash
 
-## Overview
-
 Python bindings for DASH by exposing DASH datatypes to Python.
 
 ## Synopsis
