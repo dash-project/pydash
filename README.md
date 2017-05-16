@@ -3,8 +3,36 @@
 ## Overview
 
 Python bindings for DASH by exposing DASH datatypes to Python.
-Soon, you will be able to do all your fancy Python things with the power
-of DASH. 
+
+## Synopsis
+
+~~~bash
+$ git clone https://github.com/dash-project/pydash.git ~/tmp/pydash
+$ pip install ~/tmp/pydash
+$ python
+>>> import pydash
+>>> pydash.initialize(0, '')
+>>> # See help(pydash) for API documentation
+>>> pydash.finalize()
+~~~
+
+To run a pydash application on distributed nodes (via MPI), just spawn the
+interpreter via `mpiexec`/`mpirun` as usual:
+
+~~~python
+# File: my_pydash_test.py
+import pydash
+
+pydash.initialize(0, "")
+
+print("My unit id: {}".format(pydash.myid()))
+
+pydash.finalize()
+~~~
+
+~~~bash
+$ mpirun -n 4 python my_dash_test.py
+~~~
 
 ## Build and Install
 
