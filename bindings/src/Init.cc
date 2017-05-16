@@ -9,8 +9,8 @@ namespace py = pybind11;
 
 using namespace dash;
 
-PYBIND11_PLUGIN(DASH) {
-    py::module m("dash", "DASH Binding");
+PYBIND11_PLUGIN(pydash) {
+    py::module m("pydash", "DASH Python Binding");
         
     m.def("initialize",
           ((void (*)(int *, char*)) (&init)),
