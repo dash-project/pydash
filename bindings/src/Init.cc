@@ -1,5 +1,6 @@
 
 #include <pybind11/pybind11.h>
+#include <pybind11/operators.h>
 
 #include <dash/Init.h>
 #include <dash/Types.h>
@@ -11,6 +12,16 @@ using namespace dash;
 
 PYBIND11_PLUGIN(pydash) {
     py::module m("pydash", "DASH Python Binding");
+
+    py::class_<global_unit_t> global_unit_t_py(m, "global_unit");
+    global_unit_t_py
+      .def(py::init<int>())
+      .def("id",
+           [](const global_unit_t & gu) { return static_cast<int>(gu); },
+           py::is_operator());
+      ;
+
+    py::implicitly_convertible<int, global_unit_t>();
         
     m.def("initialize",
           ((void (*)(int *, char*)) (&init)),

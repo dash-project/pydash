@@ -6,12 +6,9 @@ set(PYBIND11_BASE ${PYBIND11_BASE} PARENT_SCOPE)
 set(DASH_BASE     ${DASH_BASE}     PARENT_SCOPE)
 
 # include(${CMAKE_SOURCE_DIR}/CMakeExt/DASH.cmake)
-
 # include_directories(
-#   ${DASH_BASE}/include
-# # ${DASH_INCLUDE_DIRS}
+#   ${DASH_INCLUDE_DIRS}
 # )
-#
 # link_directories(
 #   ${DASH_BASE}/lib
 # )
@@ -25,11 +22,8 @@ find_package(dart-base CONFIG REQUIRED)
 find_package(dart-mpi  CONFIG REQUIRED)
 find_package(dash-mpi  CONFIG REQUIRED)
 
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${DASH_CXX_FLAGS}")
-
 
 message(STATUS "Looking for pybind11 config in ${PYBIND11_BASE}")
-# set(pybind11_DIR ${PYBIND11_BASE}/share/cmake/pybind11)
 find_package(pybind11 CONFIG REQUIRED
              HINTS ${PYBIND11_BASE})
 message(STATUS "Found pybind11 v${pybind11_VERSION}: "
