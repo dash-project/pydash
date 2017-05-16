@@ -32,6 +32,10 @@ pydash.finalize()
 
 ~~~bash
 $ mpirun -n 4 python my_dash_test.py
+My unit id: 2
+My unit id: 1
+My unit id: 3
+My unit id: 0
 ~~~
 
 ## Build and Install
