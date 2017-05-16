@@ -52,12 +52,12 @@ My unit id: 0
 
 ## pybind11
 
-- Pull from (inofficial) fork: 
+- Pull from official pybind11 repository: 
 
-      git clone https://github.com/fuchsto/pybind11.git -b embedded
+      git clone https://github.com/pybind/pybind11
 
 - Build and install, installation path of pybind11 must be provided
-  when building pydash applications
+  when building pydash applications via CMake option `PYBIND11_BASE`
 
 ## Running Tests
 
@@ -67,26 +67,18 @@ My unit id: 0
     $ pip install pytest --user
     ~~~
 
+
+# Further References
+
 ## Extending Python with C or C++ using Python API 
 
-See this reference as a starting point
+See this reference as a starting point:
 
-<https://docs.python.org/3.7/extending/extending.html#>
-
-
-## Quick Start to  Python  Modules
-
-The file `/Python-3.X.X/Modules/xxmodule.c` includes a template for C
-bindings and might be used as a reference for quick starters.
-
-It can be found  here: <https://www.python.org/downloads/release/python-360b1/>
-
+- <https://docs.python.org/3.7/extending/extending.html#>
 
 ## Links
 
-<https://www.python.org/dev/peps/pep-0489/>
-
-<https://packaging.python.org/extensions/>
-
-<http://doc.dash-project.org/internal/PyDASH>
+- <https://www.python.org/dev/peps/pep-0489/>
+- <https://packaging.python.org/extensions/>
+- <http://doc.dash-project.org/internal/PyDASH>
 
