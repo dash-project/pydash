@@ -21,24 +21,24 @@ PYBIND11_PLUGIN(pydash) {
           "Finalize the DASH library and the underlying runtime system.");
 
     m.def("is_initialized",
-          (bool (*)(void))                 &(dash::is_initialized),
+          (bool (*)(void)) &(dash::is_initialized),
           "Check whether DASH has been initialized.");
 
-//  m.def("is_multithreaded",
-//        (bool (*)(void))                 &dash::is_multithreaded,
-//        "Check whether DASH supports multi-threaded access.");
-
-//  m.def("myid",
-//        &(myid),
-//        "Shortcut to query the global unit ID of the calling unit.");
-//
-//  m.def("size",
-//        &(size),
-//        "Return the number of units in the global team.");
-
-//  m.def("barrier",
-//        (void (*)(void))                 &dash::barrier,
-//        "A global barrier involving all units.");
+	  m.def("is_multithreaded",
+	        (bool (*)(void)) &dash::is_multithreaded,
+	        "Check whether DASH supports multi-threaded access.");
+	
+	  m.def("myid",
+	        &(myid),
+	        "Shortcut to query the global unit ID of the calling unit.");
+	
+	  m.def("size",
+	        &(size),
+	        "Return the number of units in the global team.");
+	
+	  m.def("barrier",
+	        (void (*)(void)) &dash::barrier,
+	        "A global barrier involving all units.");
         
     return m.ptr();
 }

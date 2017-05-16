@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BUILD_DIR=./build
+BUILD_DIR=./build.dev
 
 
 FORCE_BUILD=false
@@ -26,11 +26,11 @@ if [ "${PYCXX_BASE}" = "" ] ; then
 fi
 
 if [ "${PYBIND11_BASE}" = "" ] ; then
-  PYBIND11_BASE="${HOME}/opt/pybind11"
+  PYBIND11_BASE="/opt/pybind11"
 fi
 
 if [ "${DASH_BASE}" = "" ] ; then
-  DASH_BASE="${HOME}/opt/dash-0.3.0-dev"
+  DASH_BASE="/opt/dash/dash-0.3.0-dev"
 fi
 
 # Configure with default release build settings:

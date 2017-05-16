@@ -1,10 +1,12 @@
 build
+build.dev
 *~
 *.swp
 *.swo
 my.*
 *.log
 compile_commands.json
+.ycm*
 *.orig
 
 *.a
