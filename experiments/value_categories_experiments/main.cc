@@ -127,8 +127,8 @@ using std::endl;
 int main()
 {
 	
-	for(int i = 0; i < 100 ; i++){
-		std::cout << "mis muz 🐭  🐹 ";
+	for(int i = 0; i < 100000 ; i++){
+		std::cout << "mis muz 🐭  🐹 " << std::endl;
 	}
 	/*
   ArrayWrapper<int> a(123, "A");
