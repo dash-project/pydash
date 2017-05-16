@@ -126,11 +126,11 @@ using std::endl;
 
 int main()
 {
-	
+	/*
 	for(int i = 0; i < 100000 ; i++){
 		std::cout << "mis muz 🐭  🐹 " << std::endl;
 	}
-	/*
+	*/
   ArrayWrapper<int> a(123, "A");
   fill_rand(10, a.begin(), a.end());
   LOG("main", std::make_tuple(a.begin(), a.begin()+7));
@@ -160,7 +160,7 @@ int main()
       accept_array_by_value(
         return_array_by_value(234, "X")
       ));
-*/
+
 	std::cout << std::endl;
   return 0;
 }
