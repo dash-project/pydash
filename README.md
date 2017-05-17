@@ -14,6 +14,8 @@ $ python
 >>> pydash.finalize()
 ~~~
 
+## Hello World
+
 To run a pydash application on distributed nodes (via MPI), just spawn the
 interpreter via `mpiexec`/`mpirun` as usual:
 
@@ -23,7 +25,7 @@ import pydash
 
 pydash.initialize(0, "")
 
-print("My unit id: {}".format(pydash.myid()))
+print "My unit id: {}".format(pydash.myid().id())
 
 pydash.finalize()
 ~~~
