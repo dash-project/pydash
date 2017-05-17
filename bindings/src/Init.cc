@@ -11,8 +11,6 @@
 
 namespace py = pybind11;
 
-// using namespace dash;
-
 namespace {
 
   template <typename T>
@@ -31,6 +29,12 @@ namespace {
             return static_cast<const T>(gref);
         },
         py::is_operator());
+ // py_glob_ref.def(
+ //     "assign",
+ //     [](dash::GlobRef<T> & gref, const T & val) {
+ //         gref.set(val);
+ //     },
+ //     py::is_operator());
   }
 
   template <typename T>
@@ -49,11 +53,25 @@ namespace {
     pydash_array_t py_array(mod, ("Array" + suffix).c_str());
 
     py_array.def(py::init<int>());
+    // Usage:
+    //   array.at(<global index>) -> GlobRef<T>
     py_array.def("at",
-//   py::overload_cast<long unsigned int>(
        (dash::GlobRef<T> (dash_array_t::*)(long unsigned int))
        (&dash_array_t::at)
-//     , py::const_)
+    );
+    // Usage:
+    //   array.set(<global index>, <new value>)
+    py_array.def("set",
+       [](dash_array_t & arr, long idx, const T & val) {
+            arr[idx] = val;
+       }
+    );
+    // Usage:
+    //   array.get(<global index>) -> T
+    py_array.def("get",
+       [](dash_array_t & arr, long idx) {
+            return static_cast<T>(arr[idx]);
+       }
     );
   }
 
@@ -71,7 +89,6 @@ PYBIND11_PLUGIN(pydash) {
     .def("id",
          [](const dash::global_unit_t & gu) { return static_cast<int>(gu); },
          py::is_operator());
-    ;
 
   py::implicitly_convertible<int, dash::global_unit_t>();
       
@@ -98,9 +115,9 @@ PYBIND11_PLUGIN(pydash) {
         &(dash::myid),
         "Shortcut to query the global unit ID of the calling unit.");
 
-//  m.def("size",
-//        &(dash::size),
-//        "Number of units in the global team.");
+// m.def("nunits",
+//       &(dash::size),
+//       "Number of units in the global team.");
 
   m.def("barrier",
         (void (*)(void)) &(dash::barrier),
