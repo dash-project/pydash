@@ -115,9 +115,9 @@ PYBIND11_PLUGIN(pydash) {
         &(dash::myid),
         "Shortcut to query the global unit ID of the calling unit.");
 
-// m.def("nunits",
-//       &(dash::size),
-//       "Number of units in the global team.");
+  m.def("nunits",
+        (ssize_t (*)(void)) &(dash::size),
+        "Number of units in the global team.");
 
   m.def("barrier",
         (void (*)(void)) &(dash::barrier),

@@ -3,6 +3,6 @@ import pydash
 
 pydash.initialize(0, "")
 
-print("My unit id: {}".format(pydash.myid().id()))
+print("My unit id: {} team size: {}".format(myid, nunits))
 
 pydash.finalize()
