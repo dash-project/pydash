@@ -7,6 +7,7 @@
 #include <dash/Array.h>
 
 #include <memory>
+#include <stdexcept>
 
 
 namespace py = pybind11;
@@ -45,6 +46,7 @@ namespace {
     using pydash_array_t = py::class_<
                              dash_array_t,
                              std::shared_ptr<dash_array_t> >;
+    using iterator_t     = typename dash_array_t::iterator;
 
     typedef typename dash_array_t::index_type     index_t;
     typedef typename dash_array_t::size_type      extent_t;
@@ -53,6 +55,51 @@ namespace {
     pydash_array_t py_array(mod, ("Array" + suffix).c_str());
 
     py_array.def(py::init<int>());
+
+    // Usage:
+    //   array.unit_at(<global index>) -> unit Id
+    py_array.def("unit_at",
+       [](dash_array_t & arr, index_t gidx) {
+         return arr.pattern().unit_at(gidx).id;
+       }
+    );
+
+    // Usage:
+    //   array[<global index>] = <new value>
+    py_array.def("__setitem__",
+       [](dash_array_t & arr, index_t gidx, const T & val) {
+         if (gidx >= arr.size()) {
+           throw std::out_of_range("pydash.Array: index out of bounds");
+         }
+         arr[gidx] = val;
+       }
+    );
+
+    // Usage:
+    //   val = array[<global index>]
+    py_array.def("__getitem__",
+       [](dash_array_t & arr, index_t gidx) -> T {
+         if (gidx >= arr.size()) {
+           throw std::out_of_range("pydash.Array: index out of bounds");
+         }
+         return arr[gidx].get();
+       },
+       // ref + keepalive
+       py::return_value_policy::reference_internal
+    );
+
+    py_array.def("__iter__",
+       [](dash_array_t & arr) {
+         return py::make_iterator<
+                  py::return_value_policy::reference_internal,
+                  iterator_t, iterator_t, dash::GlobRef<T> /* T & */
+                >(arr.begin(), arr.end());
+       },
+       // Essential: keep list alive while iterator exists
+       py::keep_alive<0, 1>()
+    );
+
+
     // Usage:
     //   array.at(<global index>) -> GlobRef<T>
     py_array.def("at",
