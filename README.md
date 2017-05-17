@@ -51,35 +51,32 @@ pydash.initialize(0, "")
 myid   = pydash.myid().id()
 nunits = pydash.nunits()
 # Collectively instantiate array:
-arr = pydash.ArrayInt(3 * nunits)
+array  = pydash.ArrayInt(3 * nunits)
 # Initialize array:
-arr.set(myid * 3 + 0, 100 * (1 + myid) + 0)
-arr.set(myid * 3 + 1, 100 * (1 + myid) + 1)
-arr.set(myid * 3 + 2, 100 * (1 + myid) + 2)
+array[myid * 3 + 0] = 100 * (1 + myid) + 0
+array[myid * 3 + 1] = 100 * (1 + myid) + 1
+array[myid * 3 + 2] = 100 * (1 + myid) + 2
 # Wait for all units:
 pydash.barrier()
-
+# Read array elements from remote unit:
 fromid = nunits - myid - 1
-
-print("Unit {} read array[{}..{}] : {}, {}, {}".format(
-      myid,
-      fromid * 3,
-      fromid * 3 + 2,
-      arr.get(fromid * 3 + 0),
-      arr.get(fromid * 3 + 1),
-      arr.get(fromid * 3 + 2)
-     ))
+# Print remote values:
+print("Unit {0:2} read array[{1:3} ..{2:3}]:"
+        .format(myid, fromid * 3, fromid * 3 + 2),
+      "  u:", repr(array.unit_at(fromid * 3 + 0)).rjust(2), repr(array[fromid * 3 + 0]).rjust(5),
+      "  u:", repr(array.unit_at(fromid * 3 + 1)).rjust(2), repr(array[fromid * 3 + 1]).rjust(5),
+      "  u:", repr(array.unit_at(fromid * 3 + 2)).rjust(2), repr(array[fromid * 3 + 2]).rjust(5))
 
 pydash.finalize()
 ~~~
 
 ~~~
 $ mpirun -n 5 python array_test.py
-Unit 1 read array[9..11] : 400, 401, 402
-Unit 3 read array[3..5] : 200, 201, 202
-Unit 4 read array[0..2] : 100, 101, 102
-Unit 0 read array[12..14] : 500, 501, 502
-Unit 2 read array[6..8] : 300, 301, 302
+Unit  0 read array[ 12 .. 14]:   u:  4   500   u:  4   501   u:  4   502
+Unit  3 read array[  3 ..  5]:   u:  1   200   u:  1   201   u:  1   202
+Unit  2 read array[  6 ..  8]:   u:  2   300   u:  2   301   u:  2   302
+Unit  4 read array[  0 ..  2]:   u:  0   100   u:  0   101   u:  0   102
+Unit  1 read array[  9 .. 11]:   u:  3   400   u:  3   401   u:  3   402
 ~~~
 
 ## Build and Install
