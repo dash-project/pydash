@@ -30,6 +30,12 @@ namespace {
             return static_cast<const T>(gref);
         },
         py::is_operator());
+    py_glob_ref.def(
+        "set",
+        [](dash::GlobRef<T> & gref, const T & val) {
+            gref.set(val);
+        },
+        py::is_operator());
  // py_glob_ref.def(
  //     "assign",
  //     [](dash::GlobRef<T> & gref, const T & val) {

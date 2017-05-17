@@ -27,4 +27,19 @@ print("Unit {0:2} read array[{1:3} ..{2:3}]:"
       repr(array.unit_at(fromid * 3 + 2)).rjust(2),
       repr(array[fromid * 3 + 2]).rjust(5))
 
+#   # Wait for all units:
+#   pydash.barrier()
+#
+#   if myid == 0:
+#       for val in array:
+#           print(val.get())
+#           val.set(0)
+#
+#   # Wait for all units:
+#   pydash.barrier()
+#
+#   if myid == 0:
+#       for val in array:
+#           print(val.get())
+
 pydash.finalize()
