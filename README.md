@@ -14,13 +14,15 @@ $ python
 >>> pydash.finalize()
 ~~~
 
-## MPI Hello World
+## Basic Examples
+
+### Hello World
 
 To run a pydash application on distributed nodes (via MPI), just spawn the
 interpreter via `mpiexec`/`mpirun` as usual:
 
 ~~~python
-# File: my_pydash_test.py
+# File: initialize_test.py
 import pydash
 
 pydash.initialize(0, "")
@@ -30,12 +32,54 @@ print "My unit id: {}".format(pydash.myid().id())
 pydash.finalize()
 ~~~
 
-~~~bash
-$ mpirun -n 4 python my_dash_test.py
+~~~
+$ mpirun -n 4 python initialize_test.py
 My unit id: 2
 My unit id: 1
 My unit id: 3
 My unit id: 0
+~~~
+
+### Array Read/Write
+
+~~~python
+# File: array_test.py
+import pydash
+
+pydash.initialize(0, "")
+
+myid   = pydash.myid().id()
+nunits = pydash.nunits()
+# Collectively instantiate array:
+arr = pydash.ArrayInt(3 * nunits)
+# Initialize array:
+arr.set(myid * 3 + 0, 100 * (1 + myid) + 0)
+arr.set(myid * 3 + 1, 100 * (1 + myid) + 1)
+arr.set(myid * 3 + 2, 100 * (1 + myid) + 2)
+# Wait for all units:
+pydash.barrier()
+
+fromid = nunits - myid - 1
+
+print("Unit {} read array[{}..{}] : {}, {}, {}".format(
+      myid,
+      fromid * 3,
+      fromid * 3 + 2,
+      arr.get(fromid * 3 + 0),
+      arr.get(fromid * 3 + 1),
+      arr.get(fromid * 3 + 2)
+     ))
+
+pydash.finalize()
+~~~
+
+~~~
+$ mpirun -n 5 python array_test.py
+Unit 1 read array[9..11] : 400, 401, 402
+Unit 3 read array[3..5] : 200, 201, 202
+Unit 4 read array[0..2] : 100, 101, 102
+Unit 0 read array[12..14] : 500, 501, 502
+Unit 2 read array[6..8] : 300, 301, 302
 ~~~
 
 ## Build and Install
