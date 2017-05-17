@@ -70,6 +70,11 @@ My unit id: 0
 
 # Further References
 
+## pybind11 User Guides
+
+- <https://dmtn-026.lsst.io/> (outdated)
+- <https://developer.lsst.io/coding/python_wrappers_for_cpp_with_pybind11.html>
+
 ## Extending Python with C or C++ using Python API 
 
 See this reference as a starting point:
