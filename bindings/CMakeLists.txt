@@ -32,6 +32,7 @@ message(STATUS "Found pybind11 v${pybind11_VERSION}: "
 add_library(
   pydash MODULE
   src/Init.cc
+  src/logged_val.cc
 )
 
 target_link_libraries(

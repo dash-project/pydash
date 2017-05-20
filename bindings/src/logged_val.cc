@@ -12,7 +12,7 @@ std::ostream & operator<<(
   const logged_val & lv) {
   std::ostringstream ss;
   ss << "logged_val(" << lv.name() << ":" << lv.value() << ")";
-  return operator<<(os, ss.str());l
+  return operator<<(os, ss.str());
 }
 
 } // namespace pydash

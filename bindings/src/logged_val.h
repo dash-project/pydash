@@ -7,6 +7,8 @@
 #include <iostream>
 
 
+namespace pydash {
+
 class logged_val {
   int         _value;
   std::string _name;
@@ -62,9 +64,11 @@ class logged_val {
 		_value = new_value;
   }
 
-  const std::string & name() {
+  const std::string & name() const {
     return _name;
   }
 };
+
+} // namespace pydash
 
 #endif // PYDASH__LOGGED_VAL_H__INCLUDED

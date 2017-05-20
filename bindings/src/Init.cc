@@ -184,7 +184,7 @@ PYBIND11_PLUGIN(pydash) {
   bind_type_glob_ref<float >(m, "Float");
   bind_type_glob_ref<double>(m, "Double");
 	
-  bind_type_glob_ref<logged_val>(m, "logged_val");
+  bind_type_glob_ref<pydash::logged_val>(m, "LV");
 
   // ---------------------------------------------------------------------
   // dash::Array<T>
@@ -193,7 +193,7 @@ PYBIND11_PLUGIN(pydash) {
   bind_type_array<float >(m, "Float");
   bind_type_array<double>(m, "Double");
 	
-  bind_type_array<logged_val>(m, "logged_val");
+  bind_type_array<pydash::logged_val>(m, "LV");
   
 	return m.ptr();
 }
