@@ -1,12 +1,9 @@
 #include <string>
 #include "macro.h"
-#include <type_traits>
 
 template <class T>
 class Custom_Value_Type {
-	
-public:
-  typedef T   value_type;
+
 
 public:		
 
@@ -14,14 +11,14 @@ public:
   : _value(64),
     _name('d') {
     LOG("Custom_Value_Type",
-        "ooo --- default construct " << _name);
+        "ooo --- default construct " << (std::string) _name);
   }
 
   Custom_Value_Type(T n, char name)
   : _value(n),
     _name(name) {
     LOG("Custom_Value_Type(n,s)",
-        "*** --- create " << _name);
+        "*** --- create " << (std::string) _name);
   }
 
   // move constructor
@@ -29,7 +26,7 @@ public:
       : _value(other._value),
         _name(other._name) {
     LOG("Custom_Value_Type(self &&)",
-        "((( --- move  * <-- " << _name);
+        "((( --- move  * <-- " << (std::string) _name);
     other._value = 0;
   }
 
@@ -37,7 +34,7 @@ public:
   Custom_Value_Type(const Custom_Value_Type<T> & other)
   : _name(other._name) {
     LOG("Custom_Value_Type(const self &)",
-        "=== --- create copy of " << _name);
+        "=== --- create copy of " << (std::string) _name);
 				
 				_value = other._value;
 				
@@ -47,7 +44,7 @@ public:
 
   ~Custom_Value_Type() {
     LOG("~Custom_Value_Type()",
-        "xxx --- destroy " << _name << " and free data and go home" );
+        "xxx --- destroy " << (std::string) _name << " and free data and go home" );
   }
 
   T get_value() const {
@@ -57,9 +54,7 @@ public:
   void set_value(T new_value) {
 		_value = new_value;
   }
-	
-	static_assert(std::is_copy_constructible<T>::value);
-	
+		
 
  private:
   T    _value;
