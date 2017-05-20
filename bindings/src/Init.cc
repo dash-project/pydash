@@ -195,6 +195,20 @@ PYBIND11_PLUGIN(pydash) {
 	
   bind_type_array<pydash::logged_val>(m, "LV");
   
+	// ---------------------------------------------------------------------
+  // pydash::logged_val
+  //
+  
+  py::class_<pydash::logged_val> logged_val(m, "LV");
+  logged_val
+		.def(py::init<>())
+    .def(py::init<int, const std::string &>())
+		.def(py::init<const pydash::logged_val &>())
+		.def("value", &pydash::logged_val::value)
+		.def("set_value", &pydash::logged_val::set_value)
+		.def("name", &pydash::logged_val::name)
+	
+	
 	return m.ptr();
 }
 
