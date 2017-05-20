@@ -206,7 +206,7 @@ PYBIND11_PLUGIN(pydash) {
 		.def(py::init<const pydash::logged_val &>())
 		.def("value", &pydash::logged_val::value)
 		.def("set_value", &pydash::logged_val::set_value)
-		.def("name", &pydash::logged_val::name)
+		.def("name", &pydash::logged_val::name);
 	
 	
 	return m.ptr();
