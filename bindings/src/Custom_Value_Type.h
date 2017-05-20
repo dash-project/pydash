@@ -10,14 +10,14 @@ public:
   : _value(64),
     _name('d') {
     LOG("Custom_Value_Type",
-        "ooo --- default construct " );
+        "ooo --- default construct " << _name);
   }
 
   Custom_Value_Type(int n, char name)
   : _value(n),
     _name(name) {
     LOG("Custom_Value_Type(n,s)",
-        "*** --- create " );
+        "*** --- create "<< _name);
   }
 
   // move constructor
@@ -25,7 +25,7 @@ public:
       : _value(other._value),
         _name(other._name) {
     LOG("Custom_Value_Type(self &&)",
-        "((( --- move  * <-- " );
+        "((( --- move  * <-- " << _name);
     other._value = 0;
   }
 
@@ -33,7 +33,7 @@ public:
   Custom_Value_Type(const Custom_Value_Type & other)
   : _name(other._name) {
     LOG("Custom_Value_Type(const self &)",
-        "=== --- create copy of " );
+        "=== --- create copy of " << _name);
 				
 				_value = other._value;
 				
@@ -43,7 +43,7 @@ public:
 
   ~Custom_Value_Type() {
     LOG("~Custom_Value_Type()",
-        "xxx --- destroy and free data and go home" );
+        "xxx --- destroy " << _name "and free data and go home" );
   }
 
   int get_value() const {
