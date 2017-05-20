@@ -43,7 +43,7 @@ public:
 
   ~Custom_Value_Type() {
     LOG("~Custom_Value_Type()",
-        "xxx --- destroy " << _name "and free data and go home" );
+        "xxx --- destroy " << _name << "and free data and go home" );
   }
 
   int get_value() const {
