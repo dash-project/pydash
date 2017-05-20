@@ -1,5 +1,6 @@
 #include <string>
 #include "macro.h"
+#include <type_traits>
 
 template <class T>
 class Custom_Value_Type {
@@ -7,16 +8,16 @@ class Custom_Value_Type {
 public:
   typedef T   value_type;
 
-public:
+public:		
 
   Custom_Value_Type()
   : _value(64),
-    _name("d") {
+    _name('d') {
     LOG("Custom_Value_Type",
         "ooo --- default construct " << _name);
   }
 
-  Custom_Value_Type(T n, std::string name)
+  Custom_Value_Type(T n, char name)
   : _value(n),
     _name(name) {
     LOG("Custom_Value_Type(n,s)",
@@ -57,8 +58,10 @@ public:
 		_value = new_value;
   }
 	
+	static_assert(std::is_copy_constructible<T>::value);
+	
 
  private:
-  T                 _value;
-  const std::string _name;
+  T    _value;
+  char _name;
 };
