@@ -1,7 +1,6 @@
 #include <string>
 #include "macro.h"
 
-template <class T>
 class Custom_Value_Type {
 
 
@@ -14,7 +13,7 @@ public:
         "ooo --- default construct " );
   }
 
-  Custom_Value_Type(T n, char name)
+  Custom_Value_Type(int n, char name)
   : _value(n),
     _name(name) {
     LOG("Custom_Value_Type(n,s)",
@@ -22,7 +21,7 @@ public:
   }
 
   // move constructor
-  Custom_Value_Type(Custom_Value_Type<T> && other)
+  Custom_Value_Type(Custom_Value_Type< && other)
       : _value(other._value),
         _name(other._name) {
     LOG("Custom_Value_Type(self &&)",
@@ -31,7 +30,7 @@ public:
   }
 
   // copy constructor
-  Custom_Value_Type(const Custom_Value_Type<T> & other)
+  Custom_Value_Type(const Custom_Value_Type & other)
   : _name(other._name) {
     LOG("Custom_Value_Type(const self &)",
         "=== --- create copy of " );
@@ -51,12 +50,12 @@ public:
     return _value;
   }
 	
-  void set_value(T new_value) {
+  void set_value(int new_value) {
 		_value = new_value;
   }
 		
 
  private:
-  T    _value;
+  int   _value;
   char _name;
 };
