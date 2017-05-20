@@ -199,8 +199,8 @@ PYBIND11_PLUGIN(pydash) {
   // pydash::logged_val
   //
   
-  py::class_<pydash::logged_val> logged_val(m, "LV");
-  logged_val
+  py::class_<pydash::logged_val> logged_val_py(m, "LV");
+  logged_val_py
 		.def(py::init<>())
     .def(py::init<int, const std::string &>())
 		.def(py::init<const pydash::logged_val &>())
