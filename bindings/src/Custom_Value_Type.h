@@ -1,3 +1,6 @@
+#ifndef CUSTOM_VALUE_TYPE_H
+#define CUSTOM_VALUE_TYPE_H
+
 #include <string>
 #include "macro.h"
 
@@ -53,9 +56,18 @@ public:
   void set_value(int new_value) {
 		_value = new_value;
   }
+	
+	ostream& operator<<(ostream& out, const Custom_Value_Type & object)
+	{
+	  out << object._value ... ; 
+	  return out;
+	}
+	
 		
 
  private:
-  int   _value;
+  int  _value;
   char _name;
 };
+
+#endif /* CUSTOM_VALUE_TYPE_H */
