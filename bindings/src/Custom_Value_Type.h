@@ -21,7 +21,7 @@ public:
   }
 
   // move constructor
-  Custom_Value_Type(Custom_Value_Type< && other)
+  Custom_Value_Type(Custom_Value_Type && other)
       : _value(other._value),
         _name(other._name) {
     LOG("Custom_Value_Type(self &&)",
@@ -46,7 +46,7 @@ public:
         "xxx --- destroy and free data and go home" );
   }
 
-  T get_value() const {
+  int get_value() const {
     return _value;
   }
 	
