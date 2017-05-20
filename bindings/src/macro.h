@@ -7,3 +7,4 @@
   std::clog << "-- LOG | " << std::setw(27) << scope << " | " \
             << msg << std::endl; \
 } while(0)
+

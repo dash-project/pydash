@@ -9,7 +9,7 @@
 #include <memory>
 #include <stdexcept>
 
-#include "Custom_Value_Type.h"
+#include "logged_val.h"
 
 namespace py = pybind11;
 
@@ -184,7 +184,7 @@ PYBIND11_PLUGIN(pydash) {
   bind_type_glob_ref<float >(m, "Float");
   bind_type_glob_ref<double>(m, "Double");
 	
-  bind_type_glob_ref<Custom_Value_Type>(m, "Custom_Value_Type");
+  bind_type_glob_ref<logged_val>(m, "logged_val");
 
   // ---------------------------------------------------------------------
   // dash::Array<T>
@@ -193,7 +193,7 @@ PYBIND11_PLUGIN(pydash) {
   bind_type_array<float >(m, "Float");
   bind_type_array<double>(m, "Double");
 	
-  bind_type_array<Custom_Value_Type>(m, "Custom_Value_Type");
+  bind_type_array<logged_val>(m, "logged_val");
   
 	return m.ptr();
 }
