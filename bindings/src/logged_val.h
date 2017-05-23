@@ -80,7 +80,7 @@ logged_val return_logged_val_by_val( int size, std::string name)
 
 int accept_logged_val_by_val(logged_val a)
 {
-  mine = logged_val(std::move(a));
+	logged_val mine(std::move(a));
   mine.set_value(345);
 
   return mine.value();
