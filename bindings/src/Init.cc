@@ -183,8 +183,6 @@ PYBIND11_PLUGIN(pydash) {
   bind_type_glob_ref<int   >(m, "Int");
   bind_type_glob_ref<float >(m, "Float");
   bind_type_glob_ref<double>(m, "Double");
-	
-  bind_type_glob_ref<pydash::logged_val>(m, "LV");
 
   // ---------------------------------------------------------------------
   // dash::Array<T>
@@ -192,13 +190,10 @@ PYBIND11_PLUGIN(pydash) {
   bind_type_array<int   >(m, "Int");
   bind_type_array<float >(m, "Float");
   bind_type_array<double>(m, "Double");
-	
-  bind_type_array<pydash::logged_val>(m, "LV");
   
 	// ---------------------------------------------------------------------
   // pydash::logged_val
   //
-  
   py::class_<pydash::logged_val> logged_val_py(m, "LV");
   logged_val_py
 		.def(py::init<>())
@@ -207,8 +202,11 @@ PYBIND11_PLUGIN(pydash) {
 		.def("value", &pydash::logged_val::value)
 		.def("set_value", &pydash::logged_val::set_value)
 		.def("name", &pydash::logged_val::name);
-	
-	
+
+  bind_type_glob_ref<pydash::logged_val>(m, "LV");
+  bind_type_array<pydash::logged_val>(m, "LV");
+
+
 	return m.ptr();
 }
 
