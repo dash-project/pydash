@@ -187,7 +187,18 @@ PYBIND11_PLUGIN(pydash) {
 					.def("value", &pydash::logged_val::value)
 					.def("set_value", &pydash::logged_val::set_value)
 					.def("name", &pydash::logged_val::name);
+	// ---------------------------------------------------------------------
+  // pydash::return_logged_val_by_val und
+  // pydash::accept_logged_val_by_val
+	//
+	m.def("return_logged_val_by_val",
+       ((pydash::logged_val) (*)(int, std::string*)) &(pydash::return_logged_val_by_val),
+       "Return logged_val by Value");
 				
+	m.def("accept_logged_val_by_val",
+			 (int (*) ((pydash::logged_val))) &(pydash::accept_logged_val_by_val),
+			 "Accept logged_val by Value");
+
   // ---------------------------------------------------------------------
   // dash::GlobRef<T>
   //
