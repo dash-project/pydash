@@ -1,15 +1,15 @@
 
 import pytest
-import dash
+import pydash
 
-def test_dash_init()
+def test_dash_init():
     
-    dash.init()
-    assert(dash.is_initialized())
+    pydash.init()
+    assert(pydash.is_initialized())
 
-    assert(dash.myid() >= 0)
-    assert(dash.myid() < dash.size())
+    assert(pydash.myid() >= 0)
+    assert(pydash.myid() < dash.size())
 
-    dash.finalize();
-    assert(!dash.is_initialized())
+    pydash.finalize();
+    assert(not pydash.is_initialized())
 

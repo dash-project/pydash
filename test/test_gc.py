@@ -1,3 +1,4 @@
+
 # starte mit mpirun -n 3 python3.5m test_2.py
 
 import pydash
@@ -22,14 +23,15 @@ array[2] = pydash.LV(myid, "third");
 pydash.barrier()
 
 if myid == 0:
-    gc.collect()
+        gc.collect()
 
 if myid == 1:
-    time.sleep(10)
-    gc.collect()
+         time.sleep(10)
+         gc.collect()
 
 if myid == 2:
-    time.sleep(10)
-    gc.collect()
+        time.sleep(10)
+        gc.collect()
 
 pydash.finalize()
+
