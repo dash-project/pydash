@@ -196,7 +196,7 @@ PYBIND11_PLUGIN(pydash) {
        "Return logged_val by Value");
 				
 	m.def("accept_logged_val_by_val",
-			 (int (*) ((pydash::logged_val))) &(pydash::accept_logged_val_by_val),
+			 (int (*) (*) &(pydash::accept_logged_val_by_val),
 			 "Accept logged_val by Value");
 
   // ---------------------------------------------------------------------
