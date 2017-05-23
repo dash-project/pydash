@@ -39,8 +39,9 @@ rm -Rf $BUILD_DIR/*
 (cd $BUILD_DIR && cmake -DCMAKE_BUILD_TYPE=Debug \
                         -DINSTALL_PREFIX=./pydash-0.1.0/ \
                         \
-                        -DENABLE_LOGGING=OFF \
-                        -DENABLE_TRACE_LOGGING=OFF \
+                        -DENABLE_LOGGING=ON \
+                        -DENABLE_TRACE_LOGGING=ON \
+                        -DENABLE_ASSERTIONS=ON \
                         \
                         -DBUILD_EXAMPLES=ON \
                         -DBUILD_TESTS=ON \
