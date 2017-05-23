@@ -1,9 +1,11 @@
+##########################################################################################
+# EXECTUTE WITH                                                                          #
+# (bash) $ mpirun -n 1 python3.5m test_value_categories.py 2>&1 | grep -Ev 'DEBUG|TRACE' #
+##########################################################################################
+
 import pydash
 
 pydash.initialize(0, "")
-
-#myid   = pydash.myid().id()
-#nunits = pydash.nunits()
 
 #v_0 = pydash.LV(0, "zero  ")
 #v_1 = pydash.LV(1, "first ")
@@ -27,7 +29,6 @@ m   = pydash.ret_logged_val_by_val(145, "M")
 m.set_value(40)
 
 p   = pydash.acc_logged_val_by_val(pydash.ret_logged_val_by_val(234, "X"))
-
 print(p)
 
 pydash.finalize()

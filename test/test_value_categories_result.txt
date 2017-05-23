@@ -1,0 +1,26 @@
+-- LOG |             logged_val(n,s) | *** --- create A
+-- LOG |             logged_val(n,s) | *** --- create B
+-- LOG |    logged_val(const self &) | === --- create copy of A
+-- LOG |    Value Type(const self &) | === --- copied value *_*'
+-- LOG |             logged_val(n,s) | *** --- create E
+-- LOG |    logged_val(const self &) | === --- create copy of E
+-- LOG |    Value Type(const self &) | === --- copied value *_*'
+-- LOG |               ~logged_val() | xxx --- destroy Eand free data and go home
+-- LOG |             logged_val(n,s) | *** --- create M
+-- LOG |         logged_val(self &&) | ((( --- move  * <-- M
+-- LOG |               ~logged_val() | xxx --- destroy Mand free data and go home
+-- LOG |             logged_val(n,s) | *** --- create X
+-- LOG |         logged_val(self &&) | ((( --- move  * <-- X
+-- LOG |               ~logged_val() | xxx --- destroy Xand free data and go home
+-- LOG |    logged_val(const self &) | === --- create copy of X
+-- LOG |    Value Type(const self &) | === --- copied value *_*'
+-- LOG |         logged_val(self &&) | ((( --- move  * <-- X
+-- LOG |               ~logged_val() | xxx --- destroy Xand free data and go home
+-- LOG |               ~logged_val() | xxx --- destroy Xand free data and go home
+-- LOG |               ~logged_val() | xxx --- destroy Xand free data and go home
+345
+-- LOG |               ~logged_val() | xxx --- destroy Eand free data and go home
+-- LOG |               ~logged_val() | xxx --- destroy Aand free data and go home
+-- LOG |               ~logged_val() | xxx --- destroy Mand free data and go home
+-- LOG |               ~logged_val() | xxx --- destroy Aand free data and go home
+-- LOG |               ~logged_val() | xxx --- destroy Band free data and go home
