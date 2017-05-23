@@ -15,18 +15,18 @@ namespace py = pybind11;
 
 namespace {
 	
-	logged_val return_logged_val_by_val( int size, std::string name)
+	pydash::logged_val return_logged_val_by_val(int size, std::string name)
 	{
 	  if (size % 2 == 0) {
-	    return logged_val(size / 2, name);
+	    return pydash::logged_val(size / 2, name);
 	  } else {
-	    return logged_val(size * 2, name);
+	    return pydash::logged_val(size * 2, name);
 	  }
 	}
 
-	int accept_logged_val_by_val(logged_val a)
+	int accept_logged_val_by_val(pydash::logged_val a)
 	{
-		logged_val mine(std::move(a));
+		pydash::logged_val mine(std::move(a));
 	  mine.set_value(345);
 
 	  return mine.value();
