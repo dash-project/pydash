@@ -14,6 +14,23 @@
 namespace py = pybind11;
 
 namespace {
+	
+	logged_val return_logged_val_by_val( int size, std::string name)
+	{
+	  if (size % 2 == 0) {
+	    return logged_val(size / 2, name);
+	  } else {
+	    return logged_val(size * 2, name);
+	  }
+	}
+
+	int accept_logged_val_by_val(logged_val a)
+	{
+		logged_val mine(std::move(a));
+	  mine.set_value(345);
+
+	  return mine.value();
+	}
 
   template <typename T>
   static void bind_type_glob_ref(
@@ -191,10 +208,10 @@ PYBIND11_PLUGIN(pydash) {
   // pydash::return_logged_val_by_val und
   // pydash::accept_logged_val_by_val
 	//
-	m.def("ret_logged_val_by_val", &pydash::return_logged_val_by_val,
+	m.def("ret_logged_val_by_val", &return_logged_val_by_val,
 	       "Return logged_val by Value");
 				
-	m.def("acc_logged_val_by_val", &pydash::accept_logged_val_by_val,
+	m.def("acc_logged_val_by_val", &accept_logged_val_by_val,
 			 "Accept logged_val by Value");
 
   // ---------------------------------------------------------------------
