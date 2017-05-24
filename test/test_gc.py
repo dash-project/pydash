@@ -15,9 +15,10 @@ nunits = pydash.nunits()
 array  = pydash.ArrayLV(3)
 
 # Initialize array:
-array[0] = pydash.LV(myid, 'a');
-array[1] = pydash.LV(myid, 'b');
-array[2] = pydash.LV(myid, 'c');
+if myid == 0:
+   array[0] = pydash.LV(myid, 'a')
+   array[1] = pydash.LV(myid, 'b')
+   array[2] = pydash.LV(myid, 'c')
 
 # Wait for all units:
 pydash.barrier()
