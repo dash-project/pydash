@@ -8,7 +8,7 @@
 
 #define LOG(scope, msg) do { \
   std::ostringstream ss; \
-  ss << "-- LOG | " << std::setw(4) << dash::myid().id << " |" \
+  ss << "[ " << std::setw(4) << dash::myid().id << " -- LOG | " \
      << std::setw(27) << scope << " | " \
      << msg; \
   std::clog << ss.str() << std::endl; \

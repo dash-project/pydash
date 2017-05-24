@@ -18,14 +18,14 @@ class logged_val {
   logged_val()
   : _value(64),
     _name('X') {
-    LOG("logged_val",
+    LOG("logged_val", "@:" << this  << " " <<
         "ooo --- default construct " << _name);
   }
 
   logged_val(int n, char name)
   : _value(n),
     _name(name) {
-    LOG("logged_val(n,s)",
+    LOG("logged_val(n,s)", "@:" << this  << " " <<
         "*** --- create "<< _name);
   }
 
@@ -33,26 +33,26 @@ class logged_val {
   logged_val(logged_val && other)
       : _value(other._value),
         _name(other._name) {
-    LOG("logged_val(self &&)",
-        "((( --- move  * <-- " << _name);
+    LOG("logged_val(self &&)", "@:" << this  << " " <<
+        "((( --- move  * <-- @" << &other << ": " << _name);
     other._value = 0;
   }
 
   // copy constructor
   logged_val(const logged_val & other)
   : _name(other._name) {
-    LOG("logged_val(const self &)",
-        "=== --- create copy of " << _name);
+    LOG("logged_val(const self &)", "@:" << this  << " " <<
+        "=== --- create copy of @" << &other << ": "  << _name);
 				
     _value = other._value;
 				
-    LOG("logged_val(const self &)",
+    LOG("logged_val(const self &)", "@:" << this  << " " <<
         "=== --- copied value *_*'");
   }
 
   ~logged_val() {
-    LOG("~logged_val()",
-        "xxx --- destroy " << _name << "and free data and go home" );
+    LOG("~logged_val()", "@:" << this  << " " <<
+        "xxx --- destroy " << _name << " and free data and go home" );
   }
 
   int value() const {
