@@ -12,7 +12,7 @@ myid   = pydash.myid().id()
 nunits = pydash.nunits()
 
 # Collectively instantiate array:
-array  = pydash.ArrayLV(3 * nunits)
+array  = pydash.ArrayLV(3)
 
 # Initialize array:
 array[0] = pydash.LV(myid, "first");
