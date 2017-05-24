@@ -6,6 +6,9 @@
 #include <dash/Types.h>
 #include <dash/Array.h>
 
+#include <dash/algorithm/Transform.h>
+#include <dash/algorithm/MinMax.h>
+
 #include <memory>
 #include <stdexcept>
 
@@ -14,23 +17,23 @@
 namespace py = pybind11;
 
 namespace {
-	
-	pydash::logged_val return_logged_val_by_val(int size, char name)
-	{
-	  if (size % 2 == 0) {
-	    return pydash::logged_val(size / 2, name);
-	  } else {
-	    return pydash::logged_val(size * 2, name);
-	  }
-	}
+  
+  pydash::logged_val return_logged_val_by_val(int size, char name)
+  {
+    if (size % 2 == 0) {
+      return pydash::logged_val(size / 2, name);
+    } else {
+      return pydash::logged_val(size * 2, name);
+    }
+  }
 
-	int accept_logged_val_by_val(pydash::logged_val a)
-	{
-		pydash::logged_val mine(std::move(a));
-	  mine.set_value(345);
+  int accept_logged_val_by_val(pydash::logged_val a)
+  {
+    pydash::logged_val mine(std::move(a));
+    mine.set_value(345);
 
-	  return mine.value();
-	}
+    return mine.value();
+  }
 
   template <typename T>
   static void bind_type_glob_ref(
@@ -123,6 +126,12 @@ namespace {
        py::keep_alive<0, 1>()
     );
 
+    // Usage:
+    //   array.size() -> int
+    py_array.def("size",
+       (index_t (dash_array_t::*)(void))
+       (&dash_array_t::size)
+    );
 
     // Usage:
     //   array.at(<global index>) -> GlobRef<T>
@@ -142,6 +151,22 @@ namespace {
     py_array.def("get",
        [](dash_array_t & arr, long idx) {
             return static_cast<T>(arr[idx]);
+       }
+    );
+
+    py_array.def("min",
+       [](dash_array_t & arr, const T & deflt) -> T {
+            auto it_min = dash::min_element(arr.begin(), arr.end());
+            return (it_min == arr.end()) ? deflt : *it_min;
+       }
+    );
+
+    py_array.def("argmin",
+       [](dash_array_t & arr) -> int {
+            auto it_min = dash::min_element(arr.begin(), arr.end());
+            return (it_min == arr.end())
+                   ? -1
+                   : dash::distance(arr.begin(), it_min);
        }
     );
   }
@@ -193,26 +218,26 @@ PYBIND11_PLUGIN(pydash) {
   m.def("barrier",
         (void (*)(void)) &(dash::barrier),
         "A global barrier involving all units.");
-	// ---------------------------------------------------------------------
+  // ---------------------------------------------------------------------
   // pydash::logged_val
   //
-	py::class_<pydash::logged_val> logged_val_py(m, "LV");
+  py::class_<pydash::logged_val> logged_val_py(m, "LV");
   logged_val_py
           .def(py::init<>())
-			    .def(py::init<int, char>())
-					.def(py::init<const pydash::logged_val &>())
-					.def("value", &pydash::logged_val::value)
-					.def("set_value", &pydash::logged_val::set_value)
-					.def("name", &pydash::logged_val::name);
-	// ---------------------------------------------------------------------
+          .def(py::init<int, char>())
+          .def(py::init<const pydash::logged_val &>())
+          .def("value", &pydash::logged_val::value)
+          .def("set_value", &pydash::logged_val::set_value)
+          .def("name", &pydash::logged_val::name);
+  // ---------------------------------------------------------------------
   // pydash::return_logged_val_by_val und
   // pydash::accept_logged_val_by_val
-	//
-	m.def("ret_logged_val_by_val", &return_logged_val_by_val,
-	       "Return logged_val by Value");
-				
-	m.def("acc_logged_val_by_val", &accept_logged_val_by_val,
-			 "Accept logged_val by Value");
+  //
+  m.def("ret_logged_val_by_val", &return_logged_val_by_val,
+         "Return logged_val by Value");
+        
+  m.def("acc_logged_val_by_val", &accept_logged_val_by_val,
+         "Accept logged_val by Value");
 
   // ---------------------------------------------------------------------
   // dash::GlobRef<T>
@@ -230,6 +255,6 @@ PYBIND11_PLUGIN(pydash) {
   bind_type_array<double>(m, "Double");
   bind_type_array<pydash::logged_val>(m, "LV");
 
-	return m.ptr();
+  return m.ptr();
 }
 

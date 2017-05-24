@@ -14,7 +14,7 @@ class logged_val {
 
   friend std::ostream & operator<<(std::ostream & os, const logged_val & lv);
 
- public:		
+ public:    
   logged_val()
   : _value(64),
     _name('X') {
@@ -43,9 +43,9 @@ class logged_val {
   : _name(other._name) {
     LOG("logged_val(const self &)", "@:" << this  << " " <<
         "=== --- create copy of @" << &other << ": "  << _name);
-				
+
     _value = other._value;
-				
+
     LOG("logged_val(const self &)", "@:" << this  << " " <<
         "=== --- copied value *_*'");
   }
@@ -55,16 +55,36 @@ class logged_val {
         "xxx --- destroy " << _name << " and free data and go home" );
   }
 
+  logged_val & operator=(const logged_val & other) {
+    LOG("logged_val = (const self &)", "@:" << this  << " " <<
+        "=== --- assignment from @" << &other << ": "  << _name);
+    _name  = other._name;
+    _value = other._value;
+    return *this;
+  }
+
+  logged_val & operator=(logged_val && other) {
+    LOG("logged_val = (const self &)", "@:" << this  << " " <<
+        "=== --- move-assignment from @" << &other << ": "  << _name);
+    _name  = other._name;
+    _value = other._value;
+    return *this;
+  }
+
   int value() const {
     return _value;
   }
-	
+  
   void set_value(int new_value) {
-		_value = new_value;
+    _value = new_value;
   }
 
   char name() const {
     return _name;
+  }
+
+  bool operator<(const logged_val & rhs) const {
+    return _value < rhs._value;
   }
 };
 
