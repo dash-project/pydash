@@ -16,13 +16,13 @@ array  = pydash.ArrayLV(3 * nunits)
 
 # Initialize array:
 if myid == 0:
-    array[0] = pydash.LV(myid, "first")
+    array[0] = pydash.LV(myid, 'A')
 
 if myid == 1:
-    array[1] = pydash.LV(myid, "second")
+    array[1] = pydash.LV(myid, 'B')
 
 if myid == 2:
-    array[2] = pydash.LV(myid, "third");
+    array[2] = pydash.LV(myid, 'C')
 
 # Wait for all units:
 pydash.barrier()

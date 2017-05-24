@@ -15,7 +15,7 @@ namespace py = pybind11;
 
 namespace {
 	
-	pydash::logged_val return_logged_val_by_val(int size, std::string name)
+	pydash::logged_val return_logged_val_by_val(int size, char name)
 	{
 	  if (size % 2 == 0) {
 	    return pydash::logged_val(size / 2, name);
@@ -199,7 +199,7 @@ PYBIND11_PLUGIN(pydash) {
 	py::class_<pydash::logged_val> logged_val_py(m, "LV");
   logged_val_py
           .def(py::init<>())
-			    .def(py::init<int, const std::string &>())
+			    .def(py::init<int, char>())
 					.def(py::init<const pydash::logged_val &>())
 					.def("value", &pydash::logged_val::value)
 					.def("set_value", &pydash::logged_val::set_value)

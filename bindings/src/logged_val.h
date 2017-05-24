@@ -3,27 +3,26 @@
 
 #include "macro.h"
 
-#include <string>
 #include <iostream>
 
 
 namespace pydash {
 
 class logged_val {
-  int         _value;
-  std::string _name;
+  int  _value;
+  char _name;
 
   friend std::ostream & operator<<(std::ostream & os, const logged_val & lv);
 
  public:		
   logged_val()
   : _value(64),
-    _name("myvalue") {
+    _name('X') {
     LOG("logged_val",
         "ooo --- default construct " << _name);
   }
 
-  logged_val(int n, const std::string & name)
+  logged_val(int n, char name)
   : _value(n),
     _name(name) {
     LOG("logged_val(n,s)",
@@ -47,7 +46,7 @@ class logged_val {
 				
     _value = other._value;
 				
-    LOG("Value Type(const self &)",
+    LOG("logged_val(const self &)",
         "=== --- copied value *_*'");
   }
 
@@ -64,7 +63,7 @@ class logged_val {
 		_value = new_value;
   }
 
-  const std::string & name() const {
+  char name() const {
     return _name;
   }
 };
