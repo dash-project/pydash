@@ -1,26 +1,26 @@
--- LOG |             logged_val(n,s) | *** --- create A
--- LOG |             logged_val(n,s) | *** --- create B
--- LOG |    logged_val(const self &) | === --- create copy of A
--- LOG |    Value Type(const self &) | === --- copied value *_*'
--- LOG |             logged_val(n,s) | *** --- create E
--- LOG |    logged_val(const self &) | === --- create copy of E
--- LOG |    Value Type(const self &) | === --- copied value *_*'
--- LOG |               ~logged_val() | xxx --- destroy Eand free data and go home
--- LOG |             logged_val(n,s) | *** --- create M
--- LOG |         logged_val(self &&) | ((( --- move  * <-- M
--- LOG |               ~logged_val() | xxx --- destroy Mand free data and go home
--- LOG |             logged_val(n,s) | *** --- create X
--- LOG |         logged_val(self &&) | ((( --- move  * <-- X
--- LOG |               ~logged_val() | xxx --- destroy Xand free data and go home
--- LOG |    logged_val(const self &) | === --- create copy of X
--- LOG |    Value Type(const self &) | === --- copied value *_*'
--- LOG |         logged_val(self &&) | ((( --- move  * <-- X
--- LOG |               ~logged_val() | xxx --- destroy Xand free data and go home
--- LOG |               ~logged_val() | xxx --- destroy Xand free data and go home
--- LOG |               ~logged_val() | xxx --- destroy Xand free data and go home
+[    0 -- LOG |             logged_val(n,s) | @:0x7f68312c8140 *** --- create A
+[    0 -- LOG |             logged_val(n,s) | @:0x7f6831319340 *** --- create B
+[    0 -- LOG |    logged_val(const self &) | @:0x7f6831319490 === --- create copy of @0x7f68312c8140: A
+[    0 -- LOG |    logged_val(const self &) | @:0x7f6831319490 === --- copied value *_*'
+[    0 -- LOG |             logged_val(n,s) | @:0x7f68313192d0 *** --- create E
+[    0 -- LOG |    logged_val(const self &) | @:0x7f683131ae80 === --- create copy of @0x7f68313192d0: E
+[    0 -- LOG |    logged_val(const self &) | @:0x7f683131ae80 === --- copied value *_*'
+[    0 -- LOG |               ~logged_val() | @:0x7f68313192d0 xxx --- destroy E and free data and go home
+[    0 -- LOG |             logged_val(n,s) | @:0x7ffcde97f460 *** --- create M
+[    0 -- LOG |         logged_val(self &&) | @:0x7f683131f120 ((( --- move  * <-- @0x7ffcde97f460: M
+[    0 -- LOG |               ~logged_val() | @:0x7ffcde97f460 xxx --- destroy M and free data and go home
+[    0 -- LOG |             logged_val(n,s) | @:0x7ffcde97f460 *** --- create X
+[    0 -- LOG |         logged_val(self &&) | @:0x7f683131f010 ((( --- move  * <-- @0x7ffcde97f460: X
+[    0 -- LOG |               ~logged_val() | @:0x7ffcde97f460 xxx --- destroy X and free data and go home
+[    0 -- LOG |    logged_val(const self &) | @:0x7ffcde97f480 === --- create copy of @0x7f683131f010: X
+[    0 -- LOG |    logged_val(const self &) | @:0x7ffcde97f480 === --- copied value *_*'
+[    0 -- LOG |         logged_val(self &&) | @:0x7ffcde97f450 ((( --- move  * <-- @0x7ffcde97f480: X
+[    0 -- LOG |               ~logged_val() | @:0x7ffcde97f450 xxx --- destroy X and free data and go home
+[    0 -- LOG |               ~logged_val() | @:0x7ffcde97f480 xxx --- destroy X and free data and go home
+[    0 -- LOG |               ~logged_val() | @:0x7f683131f010 xxx --- destroy X and free data and go home
 345
--- LOG |               ~logged_val() | xxx --- destroy Eand free data and go home
--- LOG |               ~logged_val() | xxx --- destroy Aand free data and go home
--- LOG |               ~logged_val() | xxx --- destroy Mand free data and go home
--- LOG |               ~logged_val() | xxx --- destroy Aand free data and go home
--- LOG |               ~logged_val() | xxx --- destroy Band free data and go home
+[   -1 -- LOG |               ~logged_val() | @:0x7f6831319340 xxx --- destroy B and free data and go home
+[   -1 -- LOG |               ~logged_val() | @:0x7f683131ae80 xxx --- destroy E and free data and go home
+[   -1 -- LOG |               ~logged_val() | @:0x7f68312c8140 xxx --- destroy A and free data and go home
+[   -1 -- LOG |               ~logged_val() | @:0x7f6831319490 xxx --- destroy A and free data and go home
+[   -1 -- LOG |               ~logged_val() | @:0x7f683131f120 xxx --- destroy M and free data and go home
