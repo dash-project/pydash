@@ -2,8 +2,8 @@ import pydash
 
 pydash.initialize(0, "")
 
-value_a = pydash.LV(0, "a")
-value_b = pydash.LV(1, "b")
+value_a = pydash.LV(0, 'a')
+value_b = pydash.LV(1, 'b')
 
 pydash.barrier()
 
@@ -19,4 +19,3 @@ pydash.barrier()
 array[0]
 
 pydash.finalize()
-
