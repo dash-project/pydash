@@ -7,29 +7,26 @@ myid   = pydash.myid().id()
 nunits = pydash.nunits()
 
 # Collectively instantiate array:
-array  = pydash.ArrayLV(3)
+array  = pydash.ArrayLV(nunits)
 
 if myid == 0:
-    print(myid)
     #time.sleep(20)
-    array[0] = pydash.LV(myid, "first")
+    array[0] = pydash.LV(myid, 'A')
 
 if myid == 1:
-    print(myid)
     #time.sleep(10)
-    array[1] = pydash.LV(myid, "second")
+    array[1] = pydash.LV(myid, 'B')
 
 if myid == 2:
-    print(myid)
     #time.sleep(0)
-    array[2] = pydash.LV(myid, "third")
+    array[2] = pydash.LV(myid, 'C')
 
 pydash.barrier()
 
 if myid == 0:
     for i in array:
-        print(i.name)
-        print(i)
+        print("Array element global reference: {} value: {}"
+                .format(i, i.get().name()))
 
 pydash.finalize()
 

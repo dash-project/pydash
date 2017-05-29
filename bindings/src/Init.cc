@@ -69,15 +69,27 @@ namespace {
   static void bind_type_array(
     py::module        & mod,
     std::string const & suffix) {
-    using dash_array_t   = dash::Array<T>;
-    using pydash_array_t = py::class_<
-                             dash_array_t,
-                             std::shared_ptr<dash_array_t> >;
-    using iterator_t     = typename dash_array_t::iterator;
+    using dash_array_t    = dash::Array<T>;
+    using dash_larray_t   = typename dash_array_t::local_type;
+
+    using pydash_array_t  = py::class_<
+                              dash_array_t,
+                              std::shared_ptr<dash_array_t> >;
+
+    using pydash_larray_t = py::class_<
+                             dash_larray_t,
+                             std::shared_ptr<dash_larray_t> >;
+
+    using iterator_t      = typename dash_array_t::iterator;
+    using literator_t     = typename dash_larray_t::iterator;
 
     typedef typename dash_array_t::index_type     index_t;
     typedef typename dash_array_t::size_type      extent_t;
     typedef typename dash_array_t::pattern_type   pattern_t;
+
+    // ===================================================================
+    // dash::Array
+    // -------------------------------------------------------------------
 
     pydash_array_t py_array(mod, ("Array" + suffix).c_str());
 
@@ -169,6 +181,81 @@ namespace {
                    : dash::distance(arr.begin(), it_min);
        }
     );
+
+    // ===================================================================
+    // dash::Array::local_type
+    // -------------------------------------------------------------------
+
+    pydash_larray_t py_larray(mod, ("LArray" + suffix).c_str());
+
+    // py_larray.def(py::init<int>());
+
+    // Usage:
+    //   larray[<local index>] = <new value>
+    py_larray.def("__setitem__",
+       [](dash_larray_t & larr, index_t lidx, const T & val) {
+         if (lidx >= larr.size()) {
+           throw std::out_of_range("pydash.Array.local: index out of bounds");
+         }
+         larr[lidx] = val;
+       }
+    );
+
+    // Usage:
+    //   val = larray[<local index>]
+    py_larray.def("__getitem__",
+       [](dash_larray_t & larr, index_t lidx) -> T {
+         if (lidx >= larr.size()) {
+           throw std::out_of_range("pydash.Array.local: index out of bounds");
+         }
+         return larr[lidx];
+       },
+       // ref + keepalive
+       py::return_value_policy::reference_internal
+    );
+
+    py_larray.def("__iter__",
+       [](dash_larray_t & larr) {
+         return py::make_iterator<
+                  py::return_value_policy::reference_internal,
+                  literator_t, literator_t, T &
+                >(larr.begin(), larr.end());
+       },
+       // Essential: keep list alive while iterator exists
+       py::keep_alive<0, 1>()
+    );
+
+    // Usage:
+    //   larray.size() -> int
+    py_larray.def("size",
+       (index_t (dash_larray_t::*)(void))
+       (&dash_larray_t::size)
+    );
+
+    // Usage:
+    //   larray.set(<local index>, <new value>)
+    py_larray.def("set",
+       [](dash_larray_t & larr, long idx, const T & val) {
+            larr[idx] = val;
+       }
+    );
+    // Usage:
+    //   larray.get(<local index>) -> T
+    py_larray.def("get",
+       [](dash_larray_t & larr, long idx) {
+            return static_cast<T>(larr[idx]);
+       }
+    );
+
+    // ===================================================================
+    // dash::Array.local
+    // -------------------------------------------------------------------
+
+    // Usage:
+    //   array.local -> LArray
+    py_array.def_readwrite("local",
+       (&dash_array_t::local)
+    );
   }
 
 }
@@ -203,9 +290,9 @@ PYBIND11_PLUGIN(pydash) {
         (bool (*)(void)) &(dash::is_initialized),
         "Check whether DASH has been initialized.");
 
-  m.def("is_multithreaded",
-        (bool (*)(void)) &(dash::is_multithreaded),
-        "Check whether DASH supports multi-threaded access.");
+// m.def("is_multithreaded",
+//       (bool (*)(void)) &(dash::is_multithreaded),
+//       "Check whether DASH supports multi-threaded access.");
 
   m.def("myid",
         &(dash::myid),
