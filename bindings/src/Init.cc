@@ -18,11 +18,18 @@ namespace py = pybind11;
 
 namespace {
 	
-	pydash::logged_val a = pydash::logged_val();
+	pydash::logged_val g_object = pydash::logged_val();
 	
   pydash::logged_val return_global_object()
   {
-		return a;
+		return g_object;
+  }
+	
+	std::shared_ptr<pydash::logged_val> g_object_2 = pydash::logged_val();
+	
+  std::shared_ptr<pydash::logged_val> g_object_2 return_global_object_shared()
+  {
+		return ;
   }
 	
   pydash::logged_val return_object()
@@ -350,6 +357,13 @@ PYBIND11_PLUGIN(pydash) {
 
   m.def("return_global_object_move", &return_global_object,
 			  "Create and return logged_val object move", py::return_value_policy::move);
+				
+				
+					
+  m.def("return_global_object_shared", &return_global_object_shared,
+        "Create and return logged_val object shared");
+					
+					
 
   // ---------------------------------------------------------------------
   // dash::GlobRef<T>
