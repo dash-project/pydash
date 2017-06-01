@@ -18,19 +18,13 @@ namespace py = pybind11;
 
 namespace {
 	
-	pydash::logged_val g_object = pydash::logged_val();
+	static pydash::logged_val g_object = pydash::logged_val();
 	
   pydash::logged_val return_global_object()
   {
 		return g_object;
   }
-	
-	std::shared_ptr<pydash::logged_val> g_object_2 = pydash::logged_val();
-	
-  std::shared_ptr<pydash::logged_val> return_global_object_shared()
-  {
-		return g_object_2;
-  }
+
 	
   pydash::logged_val return_object()
   {
