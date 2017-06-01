@@ -20,9 +20,14 @@ namespace {
 	
 	pydash::logged_val a = pydash::logged_val();
 	
-  pydash::logged_val create_object()
+  pydash::logged_val return_global_object()
   {
 		return a;
+  }
+	
+  pydash::logged_val return_object()
+  {
+		return pydash::logged_val();
   }
 	
   
@@ -334,11 +339,17 @@ PYBIND11_PLUGIN(pydash) {
   m.def("acc_logged_val_by_val", &accept_logged_val_by_val,
          "Accept logged_val by Value");
 	
-  m.def("create_object_copy", &create_object,
+  m.def("return_object_copy", &return_object,
 	      "Create and return logged_val object copy", py::return_value_policy::copy);
 
-  m.def("create_object_move", &create_object,
+  m.def("return_object_move", &return_object,
         "Create and return logged_val object move", py::return_value_policy::move);
+				
+  m.def("return_global_object_copy", &return_global_object,
+        "Create and return logged_val object copy", py::return_value_policy::copy);
+
+  m.def("return_global_object_move", &return_global_object,
+			  "Create and return logged_val object move", py::return_value_policy::move);
 
   // ---------------------------------------------------------------------
   // dash::GlobRef<T>
