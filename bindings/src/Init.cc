@@ -335,6 +335,9 @@ PYBIND11_PLUGIN(pydash) {
   m.def("create_object_copy", &create_object,
 	      "Create and return logged_val object copy", py::return_value_policy::copy);
 
+  m.def("create_object_move", &create_object,
+        "Create and return logged_val object move", py::return_value_policy::move);
+
   // ---------------------------------------------------------------------
   // dash::GlobRef<T>
   //
