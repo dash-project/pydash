@@ -27,9 +27,9 @@ namespace {
 	
 	std::shared_ptr<pydash::logged_val> g_object_2 = pydash::logged_val();
 	
-  std::shared_ptr<pydash::logged_val> g_object_2 return_global_object_shared()
+  std::shared_ptr<pydash::logged_val> return_global_object_shared()
   {
-		return ;
+		return g_object_2;
   }
 	
   pydash::logged_val return_object()
