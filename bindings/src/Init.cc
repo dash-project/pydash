@@ -18,9 +18,11 @@ namespace py = pybind11;
 
 namespace {
 	
+	pydash::logged_val a = pydash::logged_val();
+	
   pydash::logged_val create_object()
   {
-		return pydash::logged_val();
+		return a;
   }
 	
   
