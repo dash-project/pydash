@@ -17,6 +17,12 @@
 namespace py = pybind11;
 
 namespace {
+	
+  pydash::logged_val create_object()
+  {
+		return pydash::logged_val();
+  }
+	
   
   pydash::logged_val return_logged_val_by_val(int size, char name)
   {
@@ -325,6 +331,9 @@ PYBIND11_PLUGIN(pydash) {
         
   m.def("acc_logged_val_by_val", &accept_logged_val_by_val,
          "Accept logged_val by Value");
+	
+  m.def("create_object_copy", &create_object,
+	      "Create and return logged_val object copy", py::return_value_policy::copy);
 
   // ---------------------------------------------------------------------
   // dash::GlobRef<T>
