@@ -352,12 +352,6 @@ PYBIND11_PLUGIN(pydash) {
   m.def("return_global_object_move", &return_global_object,
 			  "Create and return logged_val object move", py::return_value_policy::move);
 				
-				
-					
-  m.def("return_global_object_shared", &return_global_object_shared,
-        "Create and return logged_val object shared");
-					
-					
 
   // ---------------------------------------------------------------------
   // dash::GlobRef<T>
