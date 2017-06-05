@@ -8,9 +8,9 @@ nunits = pydash.nunits()
 array = pydash.ArrayInt(3 * nunits) 
 
 # Initialize array: 
-array[myid ∗ 3 + 0] = 100 * (1 + myid) + 0
-array[myid ∗ 3 + 1] = 100 * (1 + myid) + 1 
-array[myid ∗ 3 + 2] = 100 * (1 + myid) + 2
+array[myid * 3 + 0] = 100 * (1 + myid) + 0
+array[myid * 3 + 1] = 100 * (1 + myid) + 1
+array[myid * 3 + 2] = 100 * (1 + myid) + 2
 
 #Wait for all units:
 pydash.barrier()
